@@ -12,6 +12,14 @@ public class Battledome {
 	
 	public Battledome() {}
 	
+	public List<Facility> getFacilities() {
+		return facilities;
+	}
+
+	public void setFacilities(List<Facility> facilities) {
+		this.facilities = facilities;
+	}
+
 	public String getBuildingId() {
 		return buildingId;
 	}

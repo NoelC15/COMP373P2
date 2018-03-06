@@ -1,8 +1,7 @@
 package com.comp373.model.human;
 
 import java.util.List;
-
-import com.comp373.model.bankaccount.BankAccount;
+import com.comp373.model.bankaccount.*;
 import com.comp373.models.pokemon.*;
 import com.comp373.model.facility.*;
 
@@ -39,6 +38,6 @@ public class GymLeader extends Human {
 	
 	public void lostBattle(Trainer trainer) {
 		//transfer 2x battle fee to trainer
-		this.getBankAccount().transferFunds((this.getGym().getPriceToBattle() * 2), trainer);
+		this.getAccount().transferFunds((this.getGym().getPriceToBattle() * 2), trainer);
 	}
 }

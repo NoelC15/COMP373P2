@@ -36,11 +36,11 @@ public class ManagerDao {
 	      //Get Expense Account
 	      String selectBankAccountQuery = "SELECT accountNumber, totalFunds FROM BankAccount WHERE humanId = '" + humanId + "'";
 	      ResultSet addRS = st.executeQuery(selectBankAccountQuery);
-    	  BankAccount bankAccount = new BankAccount();
+    	  BankAccountImpl bankAccount = new BankAccountImpl();
     	  
     	  System.out.println("ManagerDAO: *************** Query " + selectBankAccountQuery);
 	      
-	      Manager.setBankAccount(bankAccount);
+	      Manager.setAccount(bankAccount);
 	      //close to manage resources
 	      addRS.close();
 	      st.close();
@@ -74,7 +74,7 @@ public class ManagerDao {
             String addStm = "INSERT INTO BankAccount(humanId, accountNumber) VALUES(?, ?)";
             addPst = con.prepareStatement(addStm);
             addPst.setLong(1, cust.getHumanId());
-            addPst.setString(2, cust.getBankAccount().getAccountNumer());
+            addPst.setString(2, cust.getAccount().getAccountNumer());
             addPst.executeUpdate();
         } catch (SQLException ex) {
 

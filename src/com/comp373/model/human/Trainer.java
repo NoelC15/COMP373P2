@@ -40,6 +40,6 @@ public class Trainer extends Human {
 	
 	public void scheduleBattle(GymLeader gymLeader) {
 		gymLeader.getGym().getFacilityUses().assignFacilityToUse(gymLeader.getGym(), ApplicationConstants.GYM_BATTLE);
-		this.getBankAccount().transferFunds(gymLeader.getGym().getPriceToBattle(), gymLeader);
+		this.getAccount().transferFunds(gymLeader.getGym().getPriceToBattle(), gymLeader);
 	}
 }

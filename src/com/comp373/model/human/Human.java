@@ -43,12 +43,12 @@ public class Human {
 		return lastName;
 	}
 	
-	public void setBankAccount(BankAccount account){
+	public void setAccount(BankAccount account){
 		this.account = account;
 	}
 	
-	public BankAccount getBankAccount(){
-		return account;
+	public BankAccount getAccount(){
+		return this.account;
 	}
 	
 	

@@ -1,10 +1,12 @@
 package com.comp373.view;
 
-import com.comp373.model.human.*;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.comp373.model.human.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.comp373.model.bankaccount.*;
 import com.comp373.model.building.Battledome;
 import com.comp373.model.facility.Gym;
@@ -18,26 +20,31 @@ public class BattleDomeFacilitiesClient {
 	 */
 	public static void main (String args[]) throws Exception {
 		
-        Manager manager = new Manager();
+		ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/app-context.xml");
+        System.out.println("***************** Application Context instantiated! ******************");
+		
+//        Manager manager = new Manager();
+        Human manager = (Manager) context.getBean("manager");
 		manager.setFirstName("Professor");
-        manager.setLastName("Oak");
+        manager.setLastName("Laufer");
         manager.setHumanId(456789054);
 
         System.out.println("\tManager: \t\t" + manager.getFirstName() + " " + manager.getLastName()+"\n");
         System.out.println("\tManager ID: \t\t" + manager.getHumanId() + "\n");
         
         //Make manager bank account
-        BankAccount mangBankAccount = new BankAccount();
+//        BankAccount mangBankAccount = new BankAccountImpl();
+        BankAccount mangBankAccount = (BankAccount) context.getBean("bankAccount");
         mangBankAccount.setTotalFunds(1500.67);
-        manager.setBankAccount(mangBankAccount);
-        System.out.println("\tManager's Bank Account funds:\t" + manager.getBankAccount().getTotalFunds() + "\n");
-        System.out.println("\t"+manager.getFirstName()+"'s Bank Account number (random generation):\t"+manager.getBankAccount().getAccountNumer()+"\n");
+        manager.setAccount(mangBankAccount);
+        System.out.println("\tManager's Bank Account funds:\t" + manager.getAccount().getTotalFunds() + "\n");
+        System.out.println("\t"+manager.getFirstName()+"'s Bank Account number (random generation):\t"+manager.getAccount().getAccountNumber()+"\n");
         
         //Create a BattleDome
         Battledome redVersion = new Battledome();
         redVersion.setBuildingId("BattleDome01");
         //Assign it to the manager
-        manager.setBattleDome(redVersion);
+        ((Manager) manager).setBattleDome(redVersion);
         
         //Create a trainer
         Trainer trainer = new Trainer();
@@ -51,11 +58,11 @@ public class BattleDomeFacilitiesClient {
         System.out.println("\t"+trainer.getFirstName() +" has "+ trainer.getNumOfBadges() + " badges");
         
         //Make trainer bank account
-        BankAccount trainerAccount = new BankAccount();
+        BankAccount trainerAccount = new BankAccountImpl();
         trainerAccount.setTotalFunds(600.45);
-        trainer.setBankAccount(trainerAccount);
-        System.out.println("\tTrainers's Bank Account funds:\t" + trainer.getBankAccount().getTotalFunds() + "\n");
-        System.out.println("\t"+trainer.getFirstName()+"'s Bank Account number (random generation):\t"+trainer.getBankAccount().getAccountNumer()+"\n");
+        trainer.setAccount(trainerAccount);
+        System.out.println("\tTrainers's Bank Account funds:\t" + trainer.getAccount().getTotalFunds() + "\n");
+        System.out.println("\t"+trainer.getFirstName()+"'s Bank Account number (random generation):\t"+trainer.getAccount().getAccountNumber() + "\n");
         
         //Make Pokemon for Ash
         Pokemon pikachu = new Pokemon("electric", 6, "Pikachu");
@@ -84,11 +91,11 @@ public class BattleDomeFacilitiesClient {
         System.out.println("\tLeader ID: \t" + leader.getHumanId() + "\n");
         
         //Make BankAccount for gym leader
-        BankAccount gymAccount = new BankAccount();
+        BankAccount gymAccount = new BankAccountImpl();
         gymAccount.setTotalFunds(897.06);
-        leader.setBankAccount(gymAccount);
-        System.out.println("\t"+leader.getFirstName()+"'s Bank Account funds:\t" + leader.getBankAccount().getTotalFunds() + "\n");
-        System.out.println("\t"+leader.getFirstName()+"'s Bank Account number (random generation):\t"+leader.getBankAccount().getAccountNumer()+"\n");
+        leader.setAccount(gymAccount);
+        System.out.println("\t"+leader.getFirstName()+"'s Bank Account funds:\t" + leader.getAccount().getTotalFunds() + "\n");
+        System.out.println("\t"+leader.getFirstName()+"'s Bank Account number (random generation):\t"+leader.getAccount().getAccountNumber()+"\n");
         
         //Make Pokemon for Brock
         Pokemon geodude = new Pokemon("ground", 6, "Geodude");
@@ -110,7 +117,7 @@ public class BattleDomeFacilitiesClient {
         
         //Make a gym
         Gym pewterCity = new Gym();
-        manager.getBattleDome().addNewFacility(pewterCity); //add gym to battledome
+        ((Manager) manager).getBattleDome().addNewFacility(pewterCity); //add gym to battledome
         leader.setGym(pewterCity); //assign gym to leader
         pewterCity.setCapacity(400);
         pewterCity.setOpenDate(1997, 1, 1);
@@ -126,15 +133,15 @@ public class BattleDomeFacilitiesClient {
         System.out.println("\tIs "+pewterCity.getFacilityName()+" in use now?: " + pewterCity.getFacilityState());
         System.out.println("\tGym leader "+leader.getFirstName()+" is paid a fee of $"
         +leader.getGym().getPriceToBattle() +" by " + trainer.getFirstName()+" to battle."+"\n");
-        System.out.println("\t"+leader.getFirstName()+"'s new bank balance is "+ leader.getBankAccount().getTotalFunds());
-        System.out.println("\t"+trainer.getFirstName()+"'s new bank balance is "+ trainer.getBankAccount().getTotalFunds()+"\n");
+        System.out.println("\t"+leader.getFirstName()+"'s new bank balance is "+ leader.getAccount().getTotalFunds());
+        System.out.println("\t"+trainer.getFirstName()+"'s new bank balance is "+ trainer.getAccount().getTotalFunds()+"\n");
         
         //Brock lost.
         leader.lostBattle(trainer);
         System.out.println("\t"+leader.getFirstName()+" lost the battle and therefore paid out $"+
         (leader.getGym().getPriceToBattle()*2)+" to "+trainer.getFirstName()+"\n");
-        System.out.println("\t"+leader.getFirstName()+"'s new bank balance is "+ leader.getBankAccount().getTotalFunds());
-        System.out.println("\t"+trainer.getFirstName()+"'s new bank balance is "+ trainer.getBankAccount().getTotalFunds()+"\n");
+        System.out.println("\t"+leader.getFirstName()+"'s new bank balance is "+ leader.getAccount().getTotalFunds());
+        System.out.println("\t"+trainer.getFirstName()+"'s new bank balance is "+ trainer.getAccount().getTotalFunds()+"\n");
         //Empty gym
         pewterCity.getFacilityUses().vacateFacility(pewterCity);
         System.out.println("\tIs "+pewterCity.getFacilityName()+" in use now?: " + pewterCity.getFacilityState());

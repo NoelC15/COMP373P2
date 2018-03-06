@@ -1,6 +1,6 @@
 package com.comp373.model.human;
 
-import com.comp373.model.bankaccount.BankAccount;
+import com.comp373.model.bankaccount.*;
 import com.comp373.model.building.Battledome;
 
 public class Manager extends Human {
