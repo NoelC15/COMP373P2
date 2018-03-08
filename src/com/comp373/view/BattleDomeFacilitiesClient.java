@@ -49,7 +49,7 @@ public class BattleDomeFacilitiesClient {
         //Create a trainer
         //Trainer trainer = new Trainer();
         Trainer trainer = (Trainer) context.getBean("trainer");
-        trainer.setFirstName("Noel");
+        trainer.setFirstName("Ash");
         trainer.setLastName("Ketchum");
         trainer.setHumanId(12345678);
         trainer.setNumOfBadges(2);
