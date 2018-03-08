@@ -29,5 +29,20 @@
          </property>
 
 	</bean>
+	
+	<bean id="trainer" class="com.comp373.model.human.Trainer" parent="human" scope="prototype">
+		<property name="pokemon">
+		<list/>
+        	<!-- 
+         	<list>
+             	<ref bean="Pokemon" />
+            </list>
+            -->
+		</property>
+	</bean>
+	
+	<bean id="pokemon" class="com.comp373.models.pokemon.Pokemon" scope="prototype"/>
+	
+	
 
 </beans>

@@ -74,7 +74,7 @@ public class ManagerDao {
             String addStm = "INSERT INTO BankAccount(humanId, accountNumber) VALUES(?, ?)";
             addPst = con.prepareStatement(addStm);
             addPst.setLong(1, cust.getHumanId());
-            addPst.setString(2, cust.getAccount().getAccountNumer());
+            addPst.setString(2, cust.getAccount().getAccountNumber());
             addPst.executeUpdate();
         } catch (SQLException ex) {
 

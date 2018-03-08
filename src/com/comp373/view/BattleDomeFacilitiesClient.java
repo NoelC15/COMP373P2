@@ -47,8 +47,9 @@ public class BattleDomeFacilitiesClient {
         ((Manager) manager).setBattleDome(redVersion);
         
         //Create a trainer
-        Trainer trainer = new Trainer();
-        trainer.setFirstName("Ash");
+        //Trainer trainer = new Trainer();
+        Trainer trainer = (Trainer) context.getBean("trainer");
+        trainer.setFirstName("Noel");
         trainer.setLastName("Ketchum");
         trainer.setHumanId(12345678);
         trainer.setNumOfBadges(2);
