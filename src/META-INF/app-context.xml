@@ -43,6 +43,21 @@
 	
 	<bean id="pokemon" class="com.comp373.models.pokemon.Pokemon" scope="prototype"/>
 	
+	<bean id="gymLeader" class="com.comp373.model.human.GymLeader" parent="human" scope="prototype">
+	<property name= "gym" ref="gym"> </property>
+	<property name="pokemon">
+		<list/>
+        	<!-- 
+         	<list>
+             	<ref bean="Pokemon" />
+            </list>
+            -->
+		</property>
+	
+	</bean>
+	
+	<bean id="gym" class="com.comp373.model.facility.Gym" scope="prototype"/>
+	
 	
 
 </beans>

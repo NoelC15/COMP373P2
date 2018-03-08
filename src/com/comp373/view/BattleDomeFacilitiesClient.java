@@ -49,7 +49,7 @@ public class BattleDomeFacilitiesClient {
         //Create a trainer
         //Trainer trainer = new Trainer();
         Trainer trainer = (Trainer) context.getBean("trainer");
-        trainer.setFirstName("Ash");
+        trainer.setFirstName("Noel");
         trainer.setLastName("Ketchum");
         trainer.setHumanId(12345678);
         trainer.setNumOfBadges(2);
@@ -59,7 +59,8 @@ public class BattleDomeFacilitiesClient {
         System.out.println("\t"+trainer.getFirstName() +" has "+ trainer.getNumOfBadges() + " badges");
         
         //Make trainer bank account
-        BankAccount trainerAccount = new BankAccountImpl();
+        //BankAccount trainerAccount = new BankAccountImpl();
+        BankAccount trainerAccount = (BankAccount) context.getBean("bankAccount"); //Make sure this works
         trainerAccount.setTotalFunds(600.45);
         trainer.setAccount(trainerAccount);
         System.out.println("\tTrainers's Bank Account funds:\t" + trainer.getAccount().getTotalFunds() + "\n");
@@ -83,12 +84,14 @@ public class BattleDomeFacilitiesClient {
         	System.out.println("\t\t"+trainer.getPokemon().get(i).getName());
         }
         
+        
         //Create a gym leader
-        GymLeader leader = new GymLeader();
-        leader.setFirstName("Brock");
+        //GymLeader leader = new GymLeader();
+        GymLeader leader = (GymLeader) context.getBean("gymLeader");
+        leader.setFirstName("Mustafa");
         leader.setLastName("The Rock");
         leader.setHumanId(3456789);
-        System.out.println("\tGym Leader: \t" + leader.getFirstName() + " " + leader.getLastName()+"\n");
+        System.out.println("\n\tGym Leader: \t" + leader.getFirstName() + " " + leader.getLastName()+"\n");
         System.out.println("\tLeader ID: \t" + leader.getHumanId() + "\n");
         
         //Make BankAccount for gym leader
@@ -126,7 +129,7 @@ public class BattleDomeFacilitiesClient {
         pewterCity.setFacilityName("Pewter City Gym");
         pewterCity.addFacilityDetail("A rock type gym with " + leader.getFirstName() + " as acting gym leader.");
 
-        System.out.println("\t"+pewterCity.getFacilityName()+"'s capacity is " + pewterCity.requestAvailableCapacity() + " and it costs $" + pewterCity.getPriceToBattle()+" to battle\n");
+        System.out.println("\n\t"+pewterCity.getFacilityName()+"'s capacity is " + pewterCity.requestAvailableCapacity() + " and it costs $" + pewterCity.getPriceToBattle()+" to battle\n");
         System.out.println("\t"+pewterCity.getFacilityName()+" opened on "+ pewterCity.getOpenDate()+"\n");
         
         //Schedule a battle
