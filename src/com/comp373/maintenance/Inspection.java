@@ -1,22 +1,21 @@
 package com.comp373.maintenance;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.comp373.model.facility.Facility;
-
-import java.util.Date;
+import com.comp373.model.facility.Gym;
 
 public class Inspection {
 	private Date timeOfInspection;
 	private String inspectionResult;
-	private Map<Facility, Inspection> allInspections = new HashMap<Facility, Inspection>();
-	
+	private Map<Gym, Inspection> allInspections = new HashMap<Gym, Inspection>();
+
 	public Inspection() {
-		
+
 	}
-	
+
 	public Inspection(GregorianCalendar time, String result) {
 		this.timeOfInspection = new GregorianCalendar().getTime();
 		this.inspectionResult = result;
@@ -38,11 +37,11 @@ public class Inspection {
 		this.inspectionResult = inspectionResult;
 	}
 
-	public Map<Facility, Inspection> getAllInspections() {
+	public Map<Gym, Inspection> getAllInspections() {
 		return allInspections;
 	}
 
-	public void setAllInspections(Map<Facility, Inspection> allInspections) {
+	public void setAllInspections(Map<Gym, Inspection> allInspections) {
 		this.allInspections = allInspections;
 	}
 }

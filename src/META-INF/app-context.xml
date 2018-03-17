@@ -6,7 +6,19 @@
 	<description>Wiring the dependencies for the Application.</description>
 
 	<!-- <context:component-scan base-package="com.comp373" /> -->
-
+	
+	<bean id="gym" class="com.comp373.model.facility.GymImpl" scope="prototype">
+	
+	</bean>
+	
+	<bean id="gymLeader" class="com.comp373.model.human.GymLeader" scope="prototype">
+	<property name="gym" ref="gym"></property>
+	</bean>
+	
+	<bean id="gymDao" class="com.comp373.dal.dao.GymDao" scope="prototype">
+		<property name="gym" ref="gym" />
+	</bean>
+	
 	<bean id="bankAccount" class="com.comp373.model.bankaccount.BankAccountImpl"
 		scope="prototype" />
 	<bean id="human" class="com.comp373.model.human.Human" scope="prototype">
