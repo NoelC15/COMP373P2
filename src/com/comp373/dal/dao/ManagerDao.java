@@ -28,7 +28,7 @@ public class ManagerDao {
 
 			ResultSet custRS = st.executeQuery(selectManagerQuery);
 			System.out.println("ManagerDAO: *************** Query " + selectManagerQuery);
-//			TODO DI for manager
+//			TODO DI for manager: done
 			// Get Manager
 //			Manager manager = new Manager();
 			while (custRS.next()) {
