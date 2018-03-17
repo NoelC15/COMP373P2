@@ -1,16 +1,21 @@
 package com.comp373.view;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.comp373.model.human.*;
-import java.util.ArrayList;
-import java.util.List;
-import com.comp373.model.bankaccount.*;
+import com.comp373.model.bankaccount.BankAccount;
+import com.comp373.model.bankaccount.BankAccountImpl;
 import com.comp373.model.building.Battledome;
 import com.comp373.model.facility.Gym;
-import com.comp373.models.pokemon.*;
+import com.comp373.model.human.GymLeader;
+import com.comp373.model.human.Human;
+import com.comp373.model.human.Manager;
+import com.comp373.model.human.Trainer;
+import com.comp373.models.pokemon.Pokemon;
 
 public class BattleDomeFacilitiesClient {
 	
@@ -116,7 +121,8 @@ public class BattleDomeFacilitiesClient {
         }
         
         //Make a gym
-        Gym pewterCity = new Gym();
+//        Gym pewterCity = new Gym();
+        Gym pewterCity = (Gym) context.getBean("gym");
         ((Manager) manager).getBattleDome().addNewFacility(pewterCity); //add gym to battledome
         leader.setGym(pewterCity); //assign gym to leader
         pewterCity.setCapacity(400);

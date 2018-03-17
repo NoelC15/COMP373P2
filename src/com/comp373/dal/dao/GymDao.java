@@ -14,6 +14,8 @@ import com.comp373.model.facility.Gym;
 
 public class GymDao {
 	
+	private Gym gym;
+	
 	public GymDao() {}
 	
 	public Gym getGym(String gymName) {
@@ -26,8 +28,8 @@ public class GymDao {
 	    	ResultSet custRS = st.executeQuery(selectManagerQuery);      
 	    	System.out.println("GymDAO: *************** Query " + selectManagerQuery);
 	    	
-	      //Get Gym
-    	  Gym gym = new Gym();
+	      //Get Gym TODO
+//    	  Gym gym = new Gym();
 	      while ( custRS.next() ) {
 	    	  gym.setCapacity(custRS.getInt("capacity"));
 	    	  gym.setFacilityName(custRS.getString("facilityName"));
@@ -81,4 +83,12 @@ public class GymDao {
             }
         }
     }
+
+	public Gym getGym() {
+		return gym;
+	}
+
+	public void setGym(Gym gym) {
+		this.gym = gym;
+	}
 }

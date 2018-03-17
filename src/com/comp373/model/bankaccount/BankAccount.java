@@ -8,7 +8,6 @@ public interface BankAccount {
 	
 	public void setAccountNumber(String accountNumber);
 	
-	
 	public void setTotalFunds(double fund);
 
 	public double getTotalFunds();
