@@ -19,13 +19,13 @@ public class FacilityUseImpl implements FacilityUse {
 
 	@Override
 	public void assignFacilityToUse(Gym gym, String use) {
-		gym.setFacilityState(use); // this would be using the relevant application constant
+		gym.setGymState(use); // this would be using the relevant application constant
 		this.isInUseDuringInterval(new Date()); // store date
 	}
 
 	@Override
 	public void vacateFacility(Gym gym) {
-		gym.setFacilityState(ApplicationConstants.VACANT);
+		gym.setGymState(ApplicationConstants.VACANT);
 	}
 
 	@Override

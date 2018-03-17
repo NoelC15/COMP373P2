@@ -10,11 +10,10 @@ import com.comp373.model.facility.Gym;
 public class Inspection {
 	private Date timeOfInspection;
 	private String inspectionResult;
+//	TODO DI
 	private Map<Gym, Inspection> allInspections = new HashMap<Gym, Inspection>();
 
-	public Inspection() {
-
-	}
+	public Inspection() {}
 
 	public Inspection(GregorianCalendar time, String result) {
 		this.timeOfInspection = new GregorianCalendar().getTime();

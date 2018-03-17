@@ -22,9 +22,9 @@ public class MaintIssue {
 		this.facilityRequesting = gym;
 		this.timeRequested = requestDate;
 		// as soon as MaintIssue is created add it to facility's list
-		gym.addFacilityProblem(maintProblem);
+		gym.addGymProblem(maintProblem);
 		gym.setCurrentMaintIssue(this);
-		gym.setFacilityState(ApplicationConstants.IN_MAINT);
+		gym.setGymState(ApplicationConstants.IN_MAINT);
 	}
 
 	public String[] getDamageTypes() {
@@ -60,7 +60,7 @@ public class MaintIssue {
 	}
 
 	public void resolveMaintIssue(Gym facility) {
-		facility.setFacilityState(ApplicationConstants.VACANT);
+		facility.setGymState(ApplicationConstants.VACANT);
 		facility.setCurrentMaintIssue(null);
 	}
 }

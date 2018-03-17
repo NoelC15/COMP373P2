@@ -1,17 +1,13 @@
 package com.comp373.model.facility;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import com.comp373.maintenance.MaintIssue;
 import com.comp373.service.FacilityMaintenance;
 import com.comp373.service.FacilityUse;
-import com.comp373.service.impl.FacilityMaintImpl;
-import com.comp373.service.impl.FacilityUseImpl;
-
+//	Facility
 public interface Gym {
 
 	public int requestAvailableCapacity();
@@ -21,36 +17,36 @@ public interface Gym {
 	public Date getOpenDate();
 
 	public void setOpenDate(int year, int month, int day) throws ParseException;
-
-	public String getFacilityName();
-
-	public void setFacilityName(String facilityName);
-
-	public FacilityUse getFacilityUses();
-
-	public void setFacilityUses(FacilityUse facilityUses);
-
-	public FacilityMaintenance getFacilityMaint();
-
-	public void setFacilityMaint(FacilityMaintenance facilityMaint);
-
-	public List<String> listFacilityProblems();
-
-	public void addFacilityProblem(String facilityProblem);
-
+//	getFacilityName
+	public String getGymName();
+//	setFacilityName
+	public void setGymName(String gymName);
+//	getFacilityUses
+	public FacilityUse getGymUses();
+//	setFacilityUses
+	public void setGymUses(FacilityUse facilityUses);
+//	getFacilityMaint
+	public FacilityMaintenance getGymMaint();
+//	setFacilityMaint
+	public void setGymMaint(FacilityMaintenance facilityMaint);
+//	listFacilityProblems
+	public List<String> listGymProblems();
+//	addFacilityProblem
+	public void addGymProblem(String facilityProblem);
+//	listMaintenance
 	public MaintIssue listMaintenance();
 
 	public void setCurrentMaintIssue(MaintIssue currentMaintIssue);
-
-	public String getFacilityState();
-
-	public void setFacilityState(String facilityState);
-
-	public String getFacilityDetail();
-
-	public void addFacilityDetail(String facilityDetail);
-
-	public String getFacilityInformation();
+//	getFacilityState
+	public String getGymState();
+//	setFacilityState
+	public void setGymState(String facilityState);
+//	getFacilityDetail
+	public String getGymDetail();
+//	addFacilityDetail
+	public void addGymDetail(String facilityDetail);
+//	getFacilityInformation
+	public String getGymInformation();
 
 	public double getPriceToBattle();
 

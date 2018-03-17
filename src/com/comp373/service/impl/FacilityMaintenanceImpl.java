@@ -12,7 +12,7 @@ import com.comp373.maintenance.MaintIssue;
 import com.comp373.model.facility.Gym;
 import com.comp373.service.FacilityMaintenance;
 
-public class FacilityMaintImpl implements FacilityMaintenance {
+public class FacilityMaintenanceImpl implements FacilityMaintenance {
 	// maintenance interacts with building manager's expense account
 	private List<Date> maintDays = new ArrayList<Date>();
 
@@ -82,7 +82,7 @@ public class FacilityMaintImpl implements FacilityMaintenance {
 	@Override
 	public List<String> listMaintRequests(Gym gym) {
 		// list maintenance requests for specific facility
-		return gym.listFacilityProblems();
+		return gym.listGymProblems();
 	}
 
 	@Override

@@ -1,9 +1,10 @@
 package com.comp373.model.human;
 
 import java.util.List;
-import com.comp373.model.bankaccount.*;
-import com.comp373.models.pokemon.*;
-import com.comp373.model.facility.*;
+
+import com.comp373.model.bankaccount.BankAccount;
+import com.comp373.model.facility.Gym;
+import com.comp373.model.pokemon.Pokemon;
 
 public class GymLeader extends Human {
 	
