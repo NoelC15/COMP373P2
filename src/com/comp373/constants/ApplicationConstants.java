@@ -4,10 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ApplicationConstants {
-	
+//	TODO DI
 	public static Map<String, Integer> DAMAGEEVALUTIONDAYS = new HashMap<String, Integer>();
 	public static Map<String, Double> MAINTCOST = new HashMap<String, Double>();
 	//Various statuses
+	
 	public static final String GYM_BATTLE = "Gym battle";
 	public static final String IN_MAINT = "In maintenance";
 	public static final String IN_INSPECTION = "In inspection";

@@ -1,15 +1,15 @@
-package com.comp373.models.pokemon;
+package com.comp373.model.pokemon;
 
 public class Pokemon {
-	
+
 	private String type;
 	private int level;
 	private String name;
-	
+
 	public Pokemon() {
-		
+
 	}
-	
+
 	public Pokemon(String type, int level, String name) {
 		this.type = type;
 		this.level = level;
@@ -39,6 +39,5 @@ public class Pokemon {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
 }

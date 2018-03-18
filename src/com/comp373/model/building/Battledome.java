@@ -2,21 +2,23 @@ package com.comp373.model.building;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.comp373.model.facility.Facility;
+
+import com.comp373.model.facility.Gym;
 
 public class Battledome {
-	//a building contains facilities
-	//a battledome contains gyms
+	// a building contains facilities
+	// a battledome contains gyms
 	private String buildingId;
-	private List<Facility> facilities =  new ArrayList<Facility>();
-	
-	public Battledome() {}
-	
-	public List<Facility> getFacilities() {
+	private List<Gym> facilities = new ArrayList<Gym>();
+
+	public Battledome() {
+	}
+
+	public List<Gym> getFacilities() {
 		return facilities;
 	}
 
-	public void setFacilities(List<Facility> facilities) {
+	public void setFacilities(List<Gym> facilities) {
 		this.facilities = facilities;
 	}
 
@@ -28,18 +30,18 @@ public class Battledome {
 		this.buildingId = buildingId;
 	}
 
-	public List<Facility> listFacilities(){
+	public List<Gym> listFacilities() {
 		return this.facilities;
 	}
-	
-	public void addNewFacility(Facility facility) {
+
+	public void addNewFacility(Gym facility) {
 		this.facilities.add(facility);
 	}
-	
-	public void removeFacility(Facility facility) {
+
+	public void removeFacility(Gym facility) {
 		int index = this.facilities.indexOf(facility);
 		this.facilities.remove(index);
-		System.gc(); //get rid of unreferenced facility object
+		System.gc(); // get rid of unreferenced facility object
 	}
 
 }

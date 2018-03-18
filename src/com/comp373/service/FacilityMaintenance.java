@@ -5,21 +5,21 @@ import java.util.Map;
 
 import com.comp373.maintenance.Inspection;
 import com.comp373.maintenance.MaintIssue;
-import com.comp373.model.facility.Facility;
+import com.comp373.model.facility.Gym;
 
 public interface FacilityMaintenance {
 	
-	public void makeFacilityMaintRequest(String[] damageType, String maintProblem, int daysOut, Facility facility); 
+	public void makeFacilityMaintRequest(String[] damageType, String maintProblem, int daysOut, Gym gym); 
 	
 	public double calcMaintenanceCostForFacility(MaintIssue issue); 
 	
-	public double calcProblemRateForFacility(Facility facility); 
+	public double calcProblemRateForFacility(Gym gym); 
 	
 	public int calcDownTimeForFacilitiy(MaintIssue issue); 
 	
-	public List<String> listMaintRequests(Facility facility);
+	public List<String> listMaintRequests(Gym gym);
 	
-	public Map<Facility, Inspection> listInspections();
+	public Map<Gym, Inspection> listInspections();
 	
 	public void scheduleMaintenance(MaintIssue request);
 }
