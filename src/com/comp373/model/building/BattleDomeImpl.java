@@ -22,7 +22,7 @@ public class BattleDomeImpl implements BattleDome {
 	public void setFacilities(List<Gym> facilities) {
 		this.facilities = facilities;
 	}
-
+	
 	public String getBuildingId() {
 		return buildingId;
 	}

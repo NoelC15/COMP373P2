@@ -18,14 +18,13 @@
 		<property name="gym" ref="gym"></property>
 	</bean>
 
-
 	<bean id="gymDao" class="com.comp373.dal.dao.GymDao" scope="prototype">
 		<property name="gym" ref="gym" />
 	</bean>
 
-	<bean id="managerDao" class="com.comp373.dal.dao.ManagerDao"
-		scope="prototype">
+	<bean id="managerDao" class="com.comp373.dal.dao.ManagerDao" scope="prototype">
 		<property name="manager" ref="manager"></property>
+		<property name="bankAccount" ref="bankAccount"></property>
 	</bean>
 
 	<bean id="bankAccount" class="com.comp373.model.bankaccount.BankAccountImpl"

@@ -8,12 +8,12 @@ import java.sql.Statement;
 
 import com.comp373.dal.DBHelper;
 import com.comp373.model.bankaccount.BankAccount;
-import com.comp373.model.bankaccount.BankAccountImpl;
 import com.comp373.model.human.Manager;
 
 public class ManagerDao {
 
 	Manager manager;
+	BankAccount bankAccount;
 
 	public ManagerDao() {
 	}
@@ -28,14 +28,14 @@ public class ManagerDao {
 
 			ResultSet custRS = st.executeQuery(selectManagerQuery);
 			System.out.println("ManagerDAO: *************** Query " + selectManagerQuery);
-//			TODO DI for manager: done
+			
 			// Get Manager
-//			Manager manager = new Manager();
 			while (custRS.next()) {
 				manager.setHumanId(custRS.getLong("humanId"));
 				manager.setLastName(custRS.getString("lname"));
 				manager.setFirstName(custRS.getString("fname"));
 			}
+			
 			// close to manage resources
 			custRS.close();
 
@@ -43,8 +43,6 @@ public class ManagerDao {
 			String selectBankAccountQuery = "SELECT accountNumber, totalFunds FROM BankAccount WHERE humanId = '"
 					+ humanId + "'";
 			ResultSet addRS = st.executeQuery(selectBankAccountQuery);
-//			TODO DI
-			BankAccount bankAccount = new BankAccountImpl();
 
 			System.out.println("ManagerDAO: *************** Query " + selectBankAccountQuery);
 
@@ -109,5 +107,13 @@ public class ManagerDao {
 
 	public void setManager(Manager manager) {
 		this.manager = manager;
+	}
+
+	public BankAccount getBankAccount() {
+		return bankAccount;
+	}
+
+	public void setBankAccount(BankAccount bankAccount) {
+		this.bankAccount = bankAccount;
 	}
 }

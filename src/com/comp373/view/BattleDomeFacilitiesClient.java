@@ -126,17 +126,17 @@ public class BattleDomeFacilitiesClient {
 		geodude.setType("ground");
 		geodude.setLevel(6);
 		geodude.setName("Geodude");
-		
+
 		Pokemon onyx = (Pokemon) context.getBean("pokemon");
 		onyx.setType("ground");
 		onyx.setLevel(7);
 		onyx.setName("Onyx");
-		
+
 		Pokemon zubat = (Pokemon) context.getBean("pokemon");
 		zubat.setType("poison");
 		zubat.setLevel(8);
 		zubat.setName("Zubat");
-		
+		// TODO DI
 		List<Pokemon> gymPokemon = new ArrayList<Pokemon>();
 		gymPokemon.add(geodude);
 		gymPokemon.add(onyx);
@@ -153,7 +153,7 @@ public class BattleDomeFacilitiesClient {
 		// Make a gym
 		// Gym pewterCity = new Gym();
 		Gym pewterCity = (Gym) context.getBean("gym");
-//		TODO can this line be written without casting
+		// TODO can this line be written without casting
 		((Manager) manager).getBattleDome().addNewFacility(pewterCity); // add gym to battledome
 		leader.setGym(pewterCity); // assign gym to leader
 		pewterCity.setCapacity(400);
@@ -167,8 +167,8 @@ public class BattleDomeFacilitiesClient {
 		System.out.println("\t" + pewterCity.getGymName() + " opened on " + pewterCity.getOpenDate() + "\n");
 
 		// Schedule a battle
-//		TODO can this line be written without casting
-		((Trainer)trainer).scheduleBattle(leader); // schedule battle with gym leader
+		// TODO can this line be written without casting
+		((Trainer) trainer).scheduleBattle(leader); // schedule battle with gym leader
 		System.out.println("\tIs " + pewterCity.getGymName() + " in use now?: " + pewterCity.getGymState());
 		System.out.println("\tGym leader " + leader.getFirstName() + " is paid a fee of $"
 				+ leader.getGym().getPriceToBattle() + " by " + trainer.getFirstName() + " to battle." + "\n");
@@ -178,8 +178,8 @@ public class BattleDomeFacilitiesClient {
 				+ trainer.getAccount().getTotalFunds() + "\n");
 
 		// Brock lost.
-//		TODO can this line be written without casting
-		leader.lostBattle((Trainer)trainer);
+		// TODO can this line be written without casting
+		leader.lostBattle((Trainer) trainer);
 		System.out.println("\t" + leader.getFirstName() + " lost the battle and therefore paid out $"
 				+ (leader.getGym().getPriceToBattle() * 2) + " to " + trainer.getFirstName() + "\n");
 		System.out.println(
