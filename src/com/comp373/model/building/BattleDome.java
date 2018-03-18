@@ -1,47 +1,22 @@
 package com.comp373.model.building;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.comp373.model.facility.Gym;
 
-public class Battledome {
-	// a building contains facilities
-	// a battledome contains gyms
-	private String buildingId;
-	private List<Gym> facilities = new ArrayList<Gym>();
+public interface BattleDome {
 
-	public Battledome() {
-	}
+	public List<Gym> getFacilities();
 
-	public List<Gym> getFacilities() {
-		return facilities;
-	}
+	public void setFacilities(List<Gym> facilities);
 
-	public void setFacilities(List<Gym> facilities) {
-		this.facilities = facilities;
-	}
+	public String getBuildingId();
 
-	public String getBuildingId() {
-		return buildingId;
-	}
+	public void setBuildingId(String buildingId);
 
-	public void setBuildingId(String buildingId) {
-		this.buildingId = buildingId;
-	}
+	public List<Gym> listFacilities();
 
-	public List<Gym> listFacilities() {
-		return this.facilities;
-	}
+	public void addNewFacility(Gym facility);
 
-	public void addNewFacility(Gym facility) {
-		this.facilities.add(facility);
-	}
-
-	public void removeFacility(Gym facility) {
-		int index = this.facilities.indexOf(facility);
-		this.facilities.remove(index);
-		System.gc(); // get rid of unreferenced facility object
-	}
-
+	public void removeFacility(Gym facility);
 }

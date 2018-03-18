@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.comp373.model.bankaccount.BankAccount;
 import com.comp373.model.bankaccount.BankAccountImpl;
-import com.comp373.model.building.Battledome;
+import com.comp373.model.building.BattleDome;
 import com.comp373.model.facility.Gym;
 import com.comp373.model.human.GymLeader;
 import com.comp373.model.human.Human;
@@ -28,6 +28,7 @@ public class BattleDomeFacilitiesClient {
 		System.out.println("***************** Application Context instantiated! ******************");
 
 		// Manager manager = new Manager();
+		// TODO should be fixed; method defined in human are not visible in manager
 		Human manager = (Manager) context.getBean("manager");
 		manager.setFirstName("Professor");
 		manager.setLastName("Laufer");
@@ -44,72 +45,99 @@ public class BattleDomeFacilitiesClient {
 		System.out.println("\tManager's Bank Account funds:\t" + manager.getAccount().getTotalFunds() + "\n");
 		System.out.println("\t" + manager.getFirstName() + "'s Bank Account number (random generation):\t"
 				+ manager.getAccount().getAccountNumber() + "\n");
-
+		// TODO DI
 		// Create a BattleDome
-		Battledome redVersion = new Battledome();
+		BattleDome redVersion = (BattleDome) context.getBean("battleDome");
 		redVersion.setBuildingId("BattleDome01");
 		// Assign it to the manager
+		// TODO can this line be written without casting
 		((Manager) manager).setBattleDome(redVersion);
 
+		// TODO DI
+		// TODO should be fixed; method defined in human are not visible in trainer
 		// Create a trainer
-		Trainer trainer = new Trainer();
+		Human trainer = (Trainer) context.getBean("trainer");
 		trainer.setFirstName("Ash");
 		trainer.setLastName("Ketchum");
 		trainer.setHumanId(12345678);
-		trainer.setNumOfBadges(2);
+		// TODO can this line be written without casting
+		((Trainer) trainer).setNumOfBadges(2);
 
 		System.out.println("\tTrainer: \t\t" + trainer.getFirstName() + " " + trainer.getLastName() + "\n");
 		System.out.println("\tTrainer ID: \t\t" + trainer.getHumanId() + "\n");
-		System.out.println("\t" + trainer.getFirstName() + " has " + trainer.getNumOfBadges() + " badges");
-
+		System.out.println("\t" + trainer.getFirstName() + " has " + ((Trainer) trainer).getNumOfBadges() + " badges");
+		// TODO DI
 		// Make trainer bank account
-		BankAccount trainerAccount = new BankAccountImpl();
+		BankAccount trainerAccount = (BankAccount) context.getBean("bankAccount");
 		trainerAccount.setTotalFunds(600.45);
 		trainer.setAccount(trainerAccount);
 		System.out.println("\tTrainers's Bank Account funds:\t" + trainer.getAccount().getTotalFunds() + "\n");
 		System.out.println("\t" + trainer.getFirstName() + "'s Bank Account number (random generation):\t"
 				+ trainer.getAccount().getAccountNumber() + "\n");
 
+		// TODO DI
 		// Make Pokemon for Ash
-		Pokemon pikachu = new Pokemon("electric", 6, "Pikachu");
-		Pokemon squirtle = new Pokemon("water", 7, "Squirtle");
-		Pokemon charmander = new Pokemon("fire", 8, "Charmander");
-
+		// how to use getBean with object created with constructor parameters
+		Pokemon pikachu = (Pokemon) context.getBean("pokemon");
+		pikachu.setType("electric");
+		pikachu.setLevel(6);
+		pikachu.setName("Pikachu");
+		Pokemon squirtle = (Pokemon) context.getBean("pokemon");
+		squirtle.setType("water");
+		squirtle.setLevel(7);
+		squirtle.setName("Squirtle");
+		Pokemon charmander = (Pokemon) context.getBean("pokemon");
+		charmander.setType("fire");
+		charmander.setLevel(8);
+		charmander.setName("Charmander");
+		// TODO DI
 		List<Pokemon> team = new ArrayList<Pokemon>();
 		team.add(pikachu);
 		team.add(squirtle);
 		team.add(charmander);
 
-		trainer.setPokemon(team);
+		((Trainer) trainer).setPokemon(team);
 
 		System.out.println("\t" + trainer.getFirstName() + "'s Pokemon:");
 		int numOfPokemon = team.size();
 		for (int i = 0; i < numOfPokemon; i++) {
-			System.out.println("\t\t" + trainer.getPokemon().get(i).getName());
+			// TODO can this line be written without casting
+			System.out.println("\t\t" + ((Trainer) trainer).getPokemon().get(i).getName());
 		}
-
+		// TODO DI
 		// Create a gym leader
-		GymLeader leader = new GymLeader();
+		GymLeader leader = (GymLeader) context.getBean("gymLeader");
 		leader.setFirstName("Brock");
 		leader.setLastName("The Rock");
 		leader.setHumanId(3456789);
 		System.out.println("\tGym Leader: \t" + leader.getFirstName() + " " + leader.getLastName() + "\n");
 		System.out.println("\tLeader ID: \t" + leader.getHumanId() + "\n");
-
+		// TODO DI
 		// Make BankAccount for gym leader
-		BankAccount gymAccount = new BankAccountImpl();
+		BankAccount gymAccount = (BankAccount) context.getBean("bankAccount");
 		gymAccount.setTotalFunds(897.06);
 		leader.setAccount(gymAccount);
 		System.out.println(
 				"\t" + leader.getFirstName() + "'s Bank Account funds:\t" + leader.getAccount().getTotalFunds() + "\n");
 		System.out.println("\t" + leader.getFirstName() + "'s Bank Account number (random generation):\t"
 				+ leader.getAccount().getAccountNumber() + "\n");
-
+		// TODO DI
 		// Make Pokemon for Brock
-		Pokemon geodude = new Pokemon("ground", 6, "Geodude");
-		Pokemon onyx = new Pokemon("ground", 7, "Onyx");
-		Pokemon zubat = new Pokemon("poison", 8, "Zubat");
-
+		Pokemon geodude = (Pokemon) context.getBean("pokemon");
+		geodude.setType("ground");
+		geodude.setLevel(6);
+		geodude.setName("Geodude");
+		
+		Pokemon onyx = (Pokemon) context.getBean("pokemon");
+		onyx.setType("ground");
+		onyx.setLevel(7);
+		onyx.setName("Onyx");
+		
+		Pokemon zubat = (Pokemon) context.getBean("pokemon");
+		zubat.setType("poison");
+		zubat.setLevel(8);
+		zubat.setName("Zubat");
+		
 		List<Pokemon> gymPokemon = new ArrayList<Pokemon>();
 		gymPokemon.add(geodude);
 		gymPokemon.add(onyx);
@@ -126,6 +154,7 @@ public class BattleDomeFacilitiesClient {
 		// Make a gym
 		// Gym pewterCity = new Gym();
 		Gym pewterCity = (Gym) context.getBean("gym");
+//		TODO can this line be written without casting
 		((Manager) manager).getBattleDome().addNewFacility(pewterCity); // add gym to battledome
 		leader.setGym(pewterCity); // assign gym to leader
 		pewterCity.setCapacity(400);
@@ -139,7 +168,8 @@ public class BattleDomeFacilitiesClient {
 		System.out.println("\t" + pewterCity.getGymName() + " opened on " + pewterCity.getOpenDate() + "\n");
 
 		// Schedule a battle
-		trainer.scheduleBattle(leader); // schedule battle with gym leader
+//		TODO can this line be written without casting
+		((Trainer)trainer).scheduleBattle(leader); // schedule battle with gym leader
 		System.out.println("\tIs " + pewterCity.getGymName() + " in use now?: " + pewterCity.getGymState());
 		System.out.println("\tGym leader " + leader.getFirstName() + " is paid a fee of $"
 				+ leader.getGym().getPriceToBattle() + " by " + trainer.getFirstName() + " to battle." + "\n");
@@ -149,7 +179,8 @@ public class BattleDomeFacilitiesClient {
 				+ trainer.getAccount().getTotalFunds() + "\n");
 
 		// Brock lost.
-		leader.lostBattle(trainer);
+//		TODO can this line be written without casting
+		leader.lostBattle((Trainer)trainer);
 		System.out.println("\t" + leader.getFirstName() + " lost the battle and therefore paid out $"
 				+ (leader.getGym().getPriceToBattle() * 2) + " to " + trainer.getFirstName() + "\n");
 		System.out.println(
