@@ -7,7 +7,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.comp373.model.bankaccount.BankAccount;
-import com.comp373.model.bankaccount.BankAccountImpl;
 import com.comp373.model.building.BattleDome;
 import com.comp373.model.facility.Gym;
 import com.comp373.model.human.GymLeader;
