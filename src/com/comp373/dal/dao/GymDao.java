@@ -10,8 +10,6 @@ import java.sql.Statement;
 import com.comp373.dal.DBHelper;
 import com.comp373.model.facility.Gym;
 
-//If not using a DB are these classes even necessary?
-
 public class GymDao {
 
 	private Gym gym;
@@ -29,7 +27,7 @@ public class GymDao {
 
 			ResultSet custRS = st.executeQuery(selectManagerQuery);
 			System.out.println("GymDAO: *************** Query " + selectManagerQuery);
-			// TODO DI for gym
+			// TODO DI for gym: done
 			// Get Gym
 			// Gym gym = new Gym();
 			while (custRS.next()) {
@@ -66,9 +64,7 @@ public class GymDao {
 			custPst.setDate(5, (Date) gym.getOpenDate());
 			custPst.executeUpdate();
 		} catch (SQLException ex) {
-
 		} finally {
-
 			try {
 				if (addPst != null) {
 					addPst.close();
@@ -86,9 +82,8 @@ public class GymDao {
 	}
 
 	public Gym getGym() {
-		return gym;
+		return this.gym;
 	}
-
 	public void setGym(Gym gym) {
 		this.gym = gym;
 	}

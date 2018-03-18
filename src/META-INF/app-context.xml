@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
 
 	<description>Wiring the dependencies for the Application.</description>
 
@@ -16,14 +18,13 @@
 		<property name="gym" ref="gym"></property>
 	</bean>
 
-
 	<bean id="gymDao" class="com.comp373.dal.dao.GymDao" scope="prototype">
 		<property name="gym" ref="gym" />
 	</bean>
 
-	<bean id="managerDao" class="com.comp373.dal.dao.ManagerDao"
-		scope="prototype">
+	<bean id="managerDao" class="com.comp373.dal.dao.ManagerDao" scope="prototype">
 		<property name="manager" ref="manager"></property>
+		<property name="bankAccount" ref="bankAccount"></property>
 	</bean>
 
 	<bean id="bankAccount" class="com.comp373.model.bankaccount.BankAccountImpl"
@@ -34,12 +35,17 @@
 
 	<bean id="manager" class="com.comp373.model.human.Manager" parent="human"
 		scope="prototype">
-		<property name="battleDome" ref="battledome">
+		<property name="battleDome" ref="battleDome">
 		</property>
 	</bean>
 
+	<bean id="trainer" class="com.comp373.model.human.Trainer" parent="human"
+		scope="prototype">
+	</bean>
 
-	<bean id="battledome" class="com.comp373.model.building.Battledome"
+	<bean id="pokemon" class="com.comp373.model.pokemon.PokemonImpl" scope="prototype">
+	</bean>
+	<bean id="battleDome" class="com.comp373.model.building.BattleDomeImpl"
 		scope="prototype">
 		<property name="facilities">
 			<list />

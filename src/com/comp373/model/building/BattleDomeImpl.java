@@ -5,13 +5,14 @@ import java.util.List;
 
 import com.comp373.model.facility.Gym;
 
-public class Battledome {
+public class BattleDomeImpl implements BattleDome {
 	// a building contains facilities
 	// a battledome contains gyms
 	private String buildingId;
+	// TODO DI
 	private List<Gym> facilities = new ArrayList<Gym>();
 
-	public Battledome() {
+	public BattleDomeImpl() {
 	}
 
 	public List<Gym> getFacilities() {
@@ -21,7 +22,7 @@ public class Battledome {
 	public void setFacilities(List<Gym> facilities) {
 		this.facilities = facilities;
 	}
-
+	
 	public String getBuildingId() {
 		return buildingId;
 	}
