@@ -10,7 +10,7 @@ public class BattleDomeImpl implements BattleDome {
 	// a battledome contains gyms
 	private String buildingId;
 	// TODO DI
-	private List<Gym> facilities = new ArrayList<Gym>();
+	private List<Gym> facilities; // = new ArrayList<Gym>();
 
 	public BattleDomeImpl() {
 	}
@@ -22,7 +22,7 @@ public class BattleDomeImpl implements BattleDome {
 	public void setFacilities(List<Gym> facilities) {
 		this.facilities = facilities;
 	}
-	
+
 	public String getBuildingId() {
 		return buildingId;
 	}

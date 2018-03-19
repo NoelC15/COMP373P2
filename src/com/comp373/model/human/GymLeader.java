@@ -7,15 +7,16 @@ import com.comp373.model.facility.Gym;
 import com.comp373.model.pokemon.Pokemon;
 
 public class GymLeader extends Human {
-	
+
 	private List<Pokemon> pokemon;
 	private Gym gym;
-	
+
 	public GymLeader() {
-		
+
 	}
-	
-	public GymLeader(String fName, String lName, BankAccount account, int badges, List<Pokemon> pocketMonsters, long id, Gym gym) {
+
+	public GymLeader(String fName, String lName, BankAccount account, int badges, List<Pokemon> pocketMonsters, long id,
+			Gym gym) {
 		super(fName, lName, account, id);
 		this.setPokemon(pocketMonsters);
 		this.setGym(gym);
@@ -36,9 +37,9 @@ public class GymLeader extends Human {
 	public void setGym(Gym gym) {
 		this.gym = gym;
 	}
-	
+
 	public void lostBattle(Trainer trainer) {
-		//transfer 2x battle fee to trainer
+		// transfer 2x battle fee to trainer
 		this.getAccount().transferFunds((this.getGym().getPriceToBattle() * 2), trainer);
 	}
 }

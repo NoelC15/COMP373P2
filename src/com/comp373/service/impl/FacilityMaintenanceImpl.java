@@ -8,11 +8,14 @@ import java.util.Map;
 
 import com.comp373.constants.ApplicationConstants;
 import com.comp373.maintenance.Inspection;
+import com.comp373.maintenance.InspectionImpl;
 import com.comp373.maintenance.MaintIssue;
+import com.comp373.maintenance.MaintIssueImpl;
 import com.comp373.model.facility.Gym;
 import com.comp373.service.FacilityMaintenance;
 
 public class FacilityMaintenanceImpl implements FacilityMaintenance {
+//	TODO #DI #new
 	// maintenance interacts with building manager's expense account
 	private List<Date> maintDays = new ArrayList<Date>();
 
@@ -32,7 +35,7 @@ public class FacilityMaintenanceImpl implements FacilityMaintenance {
 		Date requestedDay = calendar.getTime();
 
 		// specify maintIssue
-		MaintIssue issue = new MaintIssue(damageType, maintProblem, gym, requestedDay);
+		MaintIssueImpl issue = new MaintIssueImpl(damageType, maintProblem, gym, requestedDay);
 
 		// schedule maintenance
 		scheduleMaintenance(issue);
@@ -88,7 +91,7 @@ public class FacilityMaintenanceImpl implements FacilityMaintenance {
 	@Override
 	public Map<Gym, Inspection> listInspections() {
 		// lists all inspections. Only tracks most recent result.
-		Inspection inspect = new Inspection();
+		Inspection inspect = new InspectionImpl();
 		return inspect.getAllInspections();
 	}
 

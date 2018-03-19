@@ -26,11 +26,11 @@ public class BattleDomeFacilitiesClient {
 		ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/app-context.xml");
 		System.out.println("***************** Application Context instantiated! ******************");
 
-		// Manager manager = new Manager();
+		
 		// TODO should be fixed; method defined in human are not visible in manager
 		Human manager = (Manager) context.getBean("manager");
-		manager.setFirstName("Professor");
-		manager.setLastName("Laufer");
+		manager.setFirstName("John");
+		manager.setLastName("Smith");
 		manager.setHumanId(456789054);
 
 		System.out.println("\tManager: \t\t" + manager.getFirstName() + " " + manager.getLastName() + "\n");
@@ -89,7 +89,7 @@ public class BattleDomeFacilitiesClient {
 		charmander.setType("fire");
 		charmander.setLevel(8);
 		charmander.setName("Charmander");
-		// TODO DI
+		// TODO #DI #new
 		List<Pokemon> team = new ArrayList<Pokemon>();
 		team.add(pikachu);
 		team.add(squirtle);

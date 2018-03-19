@@ -42,5 +42,4 @@ public class FacilityUseImpl implements FacilityUse {
 		long usage = numberOfDaysUsed / difference;
 		return usage;
 	}
-
 }

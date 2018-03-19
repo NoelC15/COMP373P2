@@ -7,11 +7,11 @@ import com.comp373.model.human.Human;
 public class BankAccountImpl implements BankAccount {
 	private String accountNumber;
 	private double totalFunds;
-//	TODO DI
-	private static Random Randomgenerator = new Random(System.currentTimeMillis());
+	// TODO #DI #new
+	private static Random randomGenerator = new Random(System.currentTimeMillis());
 
 	public BankAccountImpl() {
-		accountNumber = Integer.toString(Randomgenerator.nextInt(1000) + 9999);
+		accountNumber = Integer.toString(randomGenerator.nextInt(1000) + 9999);
 		totalFunds = 0.0;
 	}
 
@@ -25,14 +25,6 @@ public class BankAccountImpl implements BankAccount {
 
 	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
-	}
-
-	public static Random getRandomgenerator() {
-		return Randomgenerator;
-	}
-
-	public static void setRandomgenerator(Random randomgenerator) {
-		Randomgenerator = randomgenerator;
 	}
 
 	public void setTotalFunds(double fund) {
@@ -73,5 +65,13 @@ public class BankAccountImpl implements BankAccount {
 
 	public void approvePayment() {
 
+	}
+
+	public static Random getRandomGenerator() {
+		return randomGenerator;
+	}
+
+	public static void setRandomGenerator(Random randomGenerator) {
+		BankAccountImpl.randomGenerator = randomGenerator;
 	}
 }

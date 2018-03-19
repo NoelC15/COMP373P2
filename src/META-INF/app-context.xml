@@ -7,38 +7,54 @@
 
 	<description>Wiring the dependencies for the Application.</description>
 
-	<!-- <context:component-scan base-package="com.comp373" /> -->
 
 	<bean id="gym" class="com.comp373.model.facility.GymImpl" scope="prototype">
+	<property name="facilityProblems">
+		<list value-type="java.lang.String"></list>
+	</property>
+	<property name="currentMaintIssue" ref="maintIssue"></property>
+	<property name="facilityUses" ref="facilityUse"></property>
+	<property name="facilityMaint" ref="facilityMaintenance"></property>
+	</bean>
+	
+	<bean id="facilityMaintenance" class="com.comp373.service.impl.FacilityMaintenanceImpl">
+	
+	</bean>
+	
+	<bean id="facilityUse" class="com.comp373.service.impl.FacilityUseImpl">
+	
 	</bean>
 
-	<bean id="inspection" class="com.comp373.maintenance.InspectionImpl" scope="prototype">
+	<bean id="inspection" class="com.comp373.maintenance.InspectionImpl"
+		scope="prototype">
 		<property name="allInspections">
 			<map key-type="gym" value-type="inspection">
 			</map>
 		</property>
 	</bean>
-	
-	<bean id="maintIssue" class="com.comp373.maintenance.MaintIssue">
+
+	<bean id="maintIssue" class="com.comp373.maintenance.MaintIssueImpl">
 		<property name="facilityRequesting" ref="gym"></property>
 	</bean>
-	
+
 	<bean id="gymLeader" class="com.comp373.model.human.GymLeader"
 		scope="prototype">
 		<property name="gym" ref="gym"></property>
 	</bean>
 
-	<bean id="gymDao" class="com.comp373.dal.dao.GymDao" scope="prototype">
+	<bean id="gymDao" class="com.comp373.dal.dao.GymDao" scope="singleton">
 		<property name="gym" ref="gym" />
 	</bean>
 
-	<bean id="managerDao" class="com.comp373.dal.dao.ManagerDao" scope="prototype">
+	<bean id="managerDao" class="com.comp373.dal.dao.ManagerDao" scope="Singleton">
 		<property name="manager" ref="manager"></property>
 		<property name="bankAccount" ref="bankAccount"></property>
 	</bean>
 
-	<bean id="bankAccount" class="com.comp373.model.bankaccount.BankAccountImpl"
-		scope="prototype" />
+	<bean id="bankAccount" class="com.comp373.model.bankaccount.BankAccountImpl" scope="prototype">
+	</bean>
+	
+	
 	<bean id="human" class="com.comp373.model.human.Human" scope="prototype">
 		<property name="account" ref="bankAccount" />
 	</bean>
@@ -53,13 +69,14 @@
 		scope="prototype">
 	</bean>
 
-	<bean id="pokemon" class="com.comp373.model.pokemon.PokemonImpl" scope="prototype">
+	<bean id="pokemon" class="com.comp373.model.pokemon.PokemonImpl"
+		scope="prototype">
 	</bean>
 	<bean id="battleDome" class="com.comp373.model.building.BattleDomeImpl"
 		scope="prototype">
 		<property name="facilities">
-			<list />
-			<!-- <list> <ref bean="Facility" /> </list> -->
+			<list value-type="gym"></list>
+
 		</property>
 
 	</bean>

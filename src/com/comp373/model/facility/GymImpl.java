@@ -2,15 +2,14 @@ package com.comp373.model.facility;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import com.comp373.maintenance.MaintIssue;
+import com.comp373.maintenance.MaintIssueImpl;
 import com.comp373.service.FacilityMaintenance;
 import com.comp373.service.FacilityUse;
 import com.comp373.service.impl.FacilityMaintenanceImpl;
-import com.comp373.service.impl.FacilityUseImpl;
 
 public class GymImpl implements Gym {
 	private double priceToBattle;
@@ -19,16 +18,16 @@ public class GymImpl implements Gym {
 	private String facilityName;
 	private String facilityState;
 	private String facilityDetail;
-	private List<String> facilityProblems = new ArrayList<String>();
+	private List<String> facilityProblems;
 	/* List of the full sentence issues describing problems occuring from damage */
 	private MaintIssue currentMaintIssue; // make this null when curr issue is resolved
 
 	// interfaces
 	// trying to do this using DIP slides as reference
 	// probably will end up refactoring when switching to Spring
-	// TODO DI
-	private FacilityUse facilityUses = new FacilityUseImpl();
-	private FacilityMaintenance facilityMaint = new FacilityMaintenanceImpl();
+	// TODO #DI #new
+	private FacilityUse facilityUses;
+	private FacilityMaintenance facilityMaint;
 
 	public GymImpl() {
 
@@ -38,7 +37,6 @@ public class GymImpl implements Gym {
 		this.capacity = capacity;
 		this.openDate = openDate;
 		this.setGymName(gymName);
-		// super(capacity, openDate, gymName);
 		this.priceToBattle = price;
 	}
 
@@ -96,7 +94,7 @@ public class GymImpl implements Gym {
 		return currentMaintIssue;
 	}
 
-	public void setCurrentMaintIssue(MaintIssue currentMaintIssue) {
+	public void setCurrentMaintIssue(MaintIssueImpl currentMaintIssue) {
 		this.currentMaintIssue = currentMaintIssue;
 	}
 
@@ -126,5 +124,29 @@ public class GymImpl implements Gym {
 
 	public void setPriceToBattle(double priceToBattle) {
 		this.priceToBattle = priceToBattle;
+	}
+
+	public List<String> getFacilityProblems() {
+		return facilityProblems;
+	}
+
+	public void setFacilityProblems(List<String> facilityProblems) {
+		this.facilityProblems = facilityProblems;
+	}
+
+	public FacilityUse getFacilityUses() {
+		return facilityUses;
+	}
+
+	public void setFacilityUses(FacilityUse facilityUses) {
+		this.facilityUses = facilityUses;
+	}
+
+	public FacilityMaintenance getFacilityMaint() {
+		return facilityMaint;
+	}
+
+	public void setFacilityMaint(FacilityMaintenance facilityMaint) {
+		this.facilityMaint = facilityMaint;
 	}
 }

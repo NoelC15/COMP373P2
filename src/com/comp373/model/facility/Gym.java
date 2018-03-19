@@ -5,8 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import com.comp373.maintenance.MaintIssue;
+import com.comp373.maintenance.MaintIssueImpl;
 import com.comp373.service.FacilityMaintenance;
 import com.comp373.service.FacilityUse;
+
 //	Facility
 public interface Gym {
 
@@ -17,35 +19,49 @@ public interface Gym {
 	public Date getOpenDate();
 
 	public void setOpenDate(int year, int month, int day) throws ParseException;
-//	getFacilityName
+
+	// getFacilityName
 	public String getGymName();
-//	setFacilityName
+
+	// setFacilityName
 	public void setGymName(String gymName);
-//	getFacilityUses
+
+	// getFacilityUses
 	public FacilityUse getGymUses();
-//	setFacilityUses
+
+	// setFacilityUses
 	public void setGymUses(FacilityUse facilityUses);
-//	getFacilityMaint
+
+	// getFacilityMaint
 	public FacilityMaintenance getGymMaint();
-//	setFacilityMaint
+
+	// setFacilityMaint
 	public void setGymMaint(FacilityMaintenance facilityMaint);
-//	listFacilityProblems
+
+	// listFacilityProblems
 	public List<String> listGymProblems();
-//	addFacilityProblem
+
+	// addFacilityProblem
 	public void addGymProblem(String facilityProblem);
-//	listMaintenance
+
+	// listMaintenance
 	public MaintIssue listMaintenance();
 
-	public void setCurrentMaintIssue(MaintIssue currentMaintIssue);
-//	getFacilityState
+	public void setCurrentMaintIssue(MaintIssueImpl currentMaintIssue);
+
+	// getFacilityState
 	public String getGymState();
-//	setFacilityState
+
+	// setFacilityState
 	public void setGymState(String facilityState);
-//	getFacilityDetail
+
+	// getFacilityDetail
 	public String getGymDetail();
-//	addFacilityDetail
+
+	// addFacilityDetail
 	public void addGymDetail(String facilityDetail);
-//	getFacilityInformation
+
+	// getFacilityInformation
 	public String getGymInformation();
 
 	public double getPriceToBattle();
