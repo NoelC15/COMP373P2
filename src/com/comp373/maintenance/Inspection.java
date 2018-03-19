@@ -1,46 +1,20 @@
 package com.comp373.maintenance;
 
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.Map;
 
 import com.comp373.model.facility.Gym;
 
-public class Inspection {
-	private Date timeOfInspection;
-	private String inspectionResult;
-//	TODO DI
-	private Map<Gym, Inspection> allInspections = new HashMap<Gym, Inspection>();
+public interface Inspection {
 
-	public Inspection() {}
+	public Date getTimeOfInspection();
 
-	public Inspection(GregorianCalendar time, String result) {
-		this.timeOfInspection = new GregorianCalendar().getTime();
-		this.inspectionResult = result;
-	}
+	public String getInspectionResult();
 
-	public Date getTimeOfInspection() {
-		return this.timeOfInspection;
-	}
+	public void setInspectionResult(String inspectionResult);
 
-	public void setTimeOfInspection(Date timeOfInspection) {
-		this.timeOfInspection = timeOfInspection;
-	}
+	public Map<Gym, Inspection> getAllInspections();
 
-	public String getInspectionResult() {
-		return this.inspectionResult;
-	}
+	public void setAllInspections(Map<Gym, Inspection> allInspections);
 
-	public void setInspectionResult(String inspectionResult) {
-		this.inspectionResult = inspectionResult;
-	}
-
-	public Map<Gym, Inspection> getAllInspections() {
-		return allInspections;
-	}
-
-	public void setAllInspections(Map<Gym, Inspection> allInspections) {
-		this.allInspections = allInspections;
-	}
 }
