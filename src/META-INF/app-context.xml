@@ -89,7 +89,15 @@
 		<property name="facilities">
 			<list value-type="gym"></list>
 		</property>
-
+	</bean>
+	
+	<bean id="battleDomeFacilitiesClient" class="com.comp373.view.BattleDomeFacilitiesClient" scope="singleton">
+		<property name="team">
+		<list value-type="pokemon"></list>
+		 </property>
+		 <property name="gymPokemon">
+		 <list value-type="pokemon"></list>
+		 </property>
 	</bean>
 
 </beans>
