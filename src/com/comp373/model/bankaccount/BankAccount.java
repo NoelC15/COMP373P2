@@ -1,6 +1,6 @@
 package com.comp373.model.bankaccount;
 
-import com.comp373.model.human.Human;
+import com.comp373.model.human.HumanImpl;
 
 public interface BankAccount {
 	public String getAccountNumber();
@@ -8,7 +8,7 @@ public interface BankAccount {
 	public void setTotalFunds(double fund);
 	public double getTotalFunds();
 	public void payMaintance(double withdraw);
-	public boolean transferFunds(double payment, Human userToPay);
+	public boolean transferFunds(double payment, HumanImpl userToPay);
 	// TODO: increment funds to user
 	public void approvePayment();
 

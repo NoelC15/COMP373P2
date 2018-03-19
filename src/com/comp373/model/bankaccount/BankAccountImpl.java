@@ -2,7 +2,7 @@ package com.comp373.model.bankaccount;
 
 import java.util.Random;
 
-import com.comp373.model.human.Human;
+import com.comp373.model.human.HumanImpl;
 
 public class BankAccountImpl implements BankAccount {
 	private String accountNumber;
@@ -47,7 +47,7 @@ public class BankAccountImpl implements BankAccount {
 		totalFunds = totalFunds - withdraw;
 	}
 
-	public boolean transferFunds(double payment, Human userToPay) {
+	public boolean transferFunds(double payment, HumanImpl userToPay) {
 		// totalFunds = totalFunds + increment;
 		// TODO : CALLING ON BANK ACCOUNT ON WHICH USER IS PAYING I AM GETTING THERE
 		// ACCOUNT BALCANCE TO SEE IF THEY HAVE ENOUGH MONEY

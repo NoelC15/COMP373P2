@@ -6,7 +6,7 @@ import com.comp373.model.bankaccount.BankAccount;
 import com.comp373.model.facility.Gym;
 import com.comp373.model.pokemon.Pokemon;
 
-public class GymLeader extends Human {
+public class GymLeader extends HumanImpl {
 	
 	private List<Pokemon> pokemon;
 	private Gym gym;
@@ -37,7 +37,7 @@ public class GymLeader extends Human {
 		this.gym = gym;
 	}
 	
-	public void lostBattle(Trainer trainer) {
+	public void lostBattle(TrainerImpl trainer) {
 		//transfer 2x battle fee to trainer
 		this.getAccount().transferFunds((this.getGym().getPriceToBattle() * 2), trainer);
 	}

@@ -6,15 +6,15 @@ import com.comp373.constants.ApplicationConstants;
 import com.comp373.model.bankaccount.BankAccount;
 import com.comp373.model.pokemon.Pokemon;
 
-public class Trainer extends Human {
+public class TrainerImpl extends HumanImpl {
 
 	private int numOfBadges;
 	List<Pokemon> pokemon;
 
-	public Trainer() {
+	public TrainerImpl() {
 	}
 
-	public Trainer(String fName, String lName, BankAccount account, int badges, List<Pokemon> pocketMonsters, long id) {
+	public TrainerImpl(String fName, String lName, BankAccount account, int badges, List<Pokemon> pocketMonsters, long id) {
 		super(fName, lName, account, id);
 		this.setNumOfBadges(badges);
 		this.pokemon = pocketMonsters;

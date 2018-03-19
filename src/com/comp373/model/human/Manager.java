@@ -3,7 +3,7 @@ package com.comp373.model.human;
 import com.comp373.model.bankaccount.BankAccount;
 import com.comp373.model.building.Battledome;
 
-public class Manager extends Human {
+public class Manager extends HumanImpl {
 
 	private Battledome battleDome;
 	// manager's have one battledome which contains multiple facilities

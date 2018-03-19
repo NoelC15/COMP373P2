@@ -28,8 +28,12 @@
 
 	<bean id="bankAccount" class="com.comp373.model.bankaccount.BankAccountImpl"
 		scope="prototype" />
-	<bean id="human" class="com.comp373.model.human.Human" scope="prototype">
+		
+	<bean id="human" class="com.comp373.model.human.HumanImpl" scope="prototype">
 		<property name="account" ref="bankAccount" />
+		<property name="firstName" value="fName" />
+		<property name="lastName" value="lName" />
+		<property name="humanId" value="id" />
 	</bean>
 
 	<bean id="manager" class="com.comp373.model.human.Manager" parent="human"
@@ -48,7 +52,7 @@
 
 	</bean>
 	
-	<bean id="trainer" class="com.comp373.model.human.Trainer" parent="human" scope="prototype">
+	<bean id="trainer" class="com.comp373.model.human.TrainerImpl" parent="human" scope="prototype">
 		<property name="pokemon">
 		<list/>
         	<!-- 
@@ -59,9 +63,9 @@
 		</property>
 	</bean>
 	
-	<bean id="pokemon" class="com.comp373.models.pokemon.Pokemon" scope="prototype"/>
+<!-- 	<bean id="pokemon" class="com.comp373.models.pokemon.Pokemon" scope="prototype"/> -->
 	
-	<bean id="gymLeader" class="com.comp373.model.human.GymLeader" parent="human" scope="prototype">
+	<!--  <bean id="gymLeader" class="com.comp373.model.human.GymLeader" parent="human" scope="prototype">
 	<property name= "gym" ref="gym"> </property>
 	<property name="pokemon">
 		<list/>
@@ -69,12 +73,12 @@
          	<list>
              	<ref bean="Pokemon" />
             </list>
-            -->
+            
 		</property>
 	
-	</bean>
+	</bean> 
 	
-	<bean id="gym" class="com.comp373.model.facility.Gym" scope="prototype"/>
+	<!-- <bean id="gym" class="com.comp373.model.facility.Gym" scope="prototype"/> -->
 	
 	
 
