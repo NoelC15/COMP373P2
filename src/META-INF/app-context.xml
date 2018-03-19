@@ -7,7 +7,15 @@
 
 	<description>Wiring the dependencies for the Application.</description>
 
-
+	<bean id="applicationConstants" class="com.comp373.constants.ApplicationConstants">
+		<property name="damageEvaluationDays">
+			<map key-type="java.lang.String" value-type="java.lang.Integer"></map>
+		</property>
+		<property name="maintCost">
+			<map key-type="java.lang.String" value-type="java.lang.Double"></map>
+		</property>
+		
+	</bean>
 	<bean id="gym" class="com.comp373.model.facility.GymImpl" scope="prototype">
 	<property name="facilityProblems">
 		<list value-type="java.lang.String"></list>
@@ -18,11 +26,15 @@
 	</bean>
 	
 	<bean id="facilityMaintenance" class="com.comp373.service.impl.FacilityMaintenanceImpl">
-	
+		<property name="maintDays">
+			<list value-type="java.util.Date" ></list>
+		</property>
 	</bean>
 	
 	<bean id="facilityUse" class="com.comp373.service.impl.FacilityUseImpl">
-	
+		<property name="usageDays">
+			<list value-type="java.util.Date" ></list>
+		</property>
 	</bean>
 
 	<bean id="inspection" class="com.comp373.maintenance.InspectionImpl"
@@ -54,7 +66,6 @@
 	<bean id="bankAccount" class="com.comp373.model.bankaccount.BankAccountImpl" scope="prototype">
 	</bean>
 	
-	
 	<bean id="human" class="com.comp373.model.human.Human" scope="prototype">
 		<property name="account" ref="bankAccount" />
 	</bean>
@@ -72,11 +83,11 @@
 	<bean id="pokemon" class="com.comp373.model.pokemon.PokemonImpl"
 		scope="prototype">
 	</bean>
+	
 	<bean id="battleDome" class="com.comp373.model.building.BattleDomeImpl"
 		scope="prototype">
 		<property name="facilities">
 			<list value-type="gym"></list>
-
 		</property>
 
 	</bean>
