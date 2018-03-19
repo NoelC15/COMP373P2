@@ -15,10 +15,14 @@
 	<bean id="inspection" class="com.comp373.maintenance.InspectionImpl" scope="prototype">
 		<property name="allInspections">
 			<map key-type="gym" value-type="inspection">
-			
 			</map>
 		</property>
 	</bean>
+	
+	<bean id="maintIssue" class="com.comp373.maintenance.MaintIssue">
+		<property name="facilityRequesting" ref="gym"></property>
+	</bean>
+	
 	<bean id="gymLeader" class="com.comp373.model.human.GymLeader"
 		scope="prototype">
 		<property name="gym" ref="gym"></property>

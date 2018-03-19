@@ -13,7 +13,6 @@ public class MaintIssue {
 	private Gym facilityRequesting;
 
 	public MaintIssue() {
-
 	}
 
 	public MaintIssue(String[] damageType, String maintProblem, Gym gym, Date requestDate) {
