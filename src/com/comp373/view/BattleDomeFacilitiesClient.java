@@ -43,7 +43,8 @@ public class BattleDomeFacilitiesClient {
 		System.out.println("\tManager ID: \t\t" + manager.getHumanId() + "\n");
 
 		// Make manager bank account
-		BankAccount mangBankAccount = (BankAccount) context.getBean("bankAccount");
+		BankAccount mangBankAccount = manager.getAccount();
+		
 		mangBankAccount.setTotalFunds(1500.67);
 		manager.setAccount(mangBankAccount);
 		System.out.println("\tManager's Bank Account funds:\t" + manager.getAccount().getTotalFunds() + "\n");
@@ -73,7 +74,7 @@ public class BattleDomeFacilitiesClient {
 		System.out.println("\t" + trainer.getFirstName() + " has " + ((Trainer) trainer).getNumOfBadges() + " badges");
 
 		// Make trainer bank account
-		BankAccount trainerAccount = (BankAccount) context.getBean("bankAccount");
+		BankAccount trainerAccount = trainer.getAccount();
 		trainerAccount.setTotalFunds(600.45);
 		trainer.setAccount(trainerAccount);
 		System.out.println("\tTrainers's Bank Account funds:\t" + trainer.getAccount().getTotalFunds() + "\n");
@@ -117,7 +118,8 @@ public class BattleDomeFacilitiesClient {
 		System.out.println("\tLeader ID: \t" + leader.getHumanId() + "\n");
 
 		// Make BankAccount for gym leader
-		BankAccount gymAccount = (BankAccount) context.getBean("bankAccount");
+		BankAccount gymAccount = leader.getAccount(); 
+
 		gymAccount.setTotalFunds(897.06);
 		leader.setAccount(gymAccount);
 		System.out.println(

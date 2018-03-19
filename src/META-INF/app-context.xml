@@ -67,7 +67,7 @@
 	</bean>
 
 	<bean id="gymLeader" class="com.comp373.model.human.GymLeader"
-		scope="prototype">
+		scope="prototype" parent="human">
 		<property name="gym" ref="gym">
 		</property>
 	</bean>
