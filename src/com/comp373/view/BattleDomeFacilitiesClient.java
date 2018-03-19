@@ -1,6 +1,5 @@
 package com.comp373.view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -16,23 +15,25 @@ import com.comp373.model.human.Trainer;
 import com.comp373.model.pokemon.Pokemon;
 
 public class BattleDomeFacilitiesClient {
-	
+
 	private static List<Pokemon> team;
 	private static List<Pokemon> gymPokemon;
-	
+
 	public static void setGymPokemon(List<Pokemon> gymPokemon) {
 		BattleDomeFacilitiesClient.gymPokemon = gymPokemon;
 	}
+
 	public static void setTeam(List<Pokemon> team) {
 		BattleDomeFacilitiesClient.team = team;
 	}
+
 	public static void main(String args[]) throws Exception {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/app-context.xml");
 		System.out.println("***************** Application Context instantiated! ******************");
 
-		
-		// TODO should be fixed; method defined in human are not visible in manager
+		// TODO should be fixed; method defined in human are not visible in
+		// manager
 		Human manager = (Manager) context.getBean("manager");
 		manager.setFirstName("John");
 		manager.setLastName("Smith");
@@ -48,15 +49,17 @@ public class BattleDomeFacilitiesClient {
 		System.out.println("\tManager's Bank Account funds:\t" + manager.getAccount().getTotalFunds() + "\n");
 		System.out.println("\t" + manager.getFirstName() + "'s Bank Account number (random generation):\t"
 				+ manager.getAccount().getAccountNumber() + "\n");
-		
+
 		// Create a BattleDome
 		BattleDome redVersion = (BattleDome) context.getBean("battleDome");
 		redVersion.setBuildingId("BattleDome01");
+		
 		// Assign it to the manager
 		// TODO can this line be written without casting
 		((Manager) manager).setBattleDome(redVersion);
 
-		// TODO should be fixed; method defined in human are not visible in trainer
+		// TODO should be fixed; method defined in human are not visible in
+		// trainer
 		// Create a trainer
 		Human trainer = (Trainer) context.getBean("trainer");
 		trainer.setFirstName("Ash");
@@ -91,7 +94,7 @@ public class BattleDomeFacilitiesClient {
 		charmander.setType("fire");
 		charmander.setLevel(8);
 		charmander.setName("Charmander");
-		// TODO #DI #new
+
 		team.add(pikachu);
 		team.add(squirtle);
 		team.add(charmander);
@@ -104,7 +107,7 @@ public class BattleDomeFacilitiesClient {
 			// TODO can this line be written without casting
 			System.out.println("\t\t" + ((Trainer) trainer).getPokemon().get(i).getName());
 		}
-		
+
 		// Create a gym leader
 		GymLeader leader = (GymLeader) context.getBean("gymLeader");
 		leader.setFirstName("Brock");
@@ -201,7 +204,8 @@ public class BattleDomeFacilitiesClient {
 				+ pewterCity.getGymMaint().calcMaintenanceCostForFacility(pewterCity.listMaintenance()));
 		System.out.println("\t" + pewterCity.getGymName() + "'s total downtime due to the last battle was "
 				+ pewterCity.getGymMaint().calcDownTimeForFacilitiy(pewterCity.listMaintenance()) + " days.");
-		// Let's pretend we were having a great day and the maintenance was already
+		// Let's pretend we were having a great day and the maintenance was
+		// already
 		// done even though I requested it for 2 days from now....
 		pewterCity.listMaintenance().resolveMaintIssue(pewterCity);
 		System.out.println("\tMaintenance has been done, " + pewterCity.getGymName() + " is currently "

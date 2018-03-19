@@ -27,7 +27,7 @@ public class ApplicationConstants {
 		maintCost.put("water damage", 30.00);
 		maintCost.put("poisonous gas", 10.99);
 	}
-	
+
 	public static void setDamageEvaluationDays(Map<String, Integer> damageEvaluationDays) {
 		ApplicationConstants.damageEvaluationDays = damageEvaluationDays;
 	}
