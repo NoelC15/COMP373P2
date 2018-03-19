@@ -28,14 +28,14 @@ public class ManagerDao {
 
 			ResultSet custRS = st.executeQuery(selectManagerQuery);
 			System.out.println("ManagerDAO: *************** Query " + selectManagerQuery);
-			
+
 			// Get Manager
 			while (custRS.next()) {
 				manager.setHumanId(custRS.getLong("humanId"));
 				manager.setLastName(custRS.getString("lname"));
 				manager.setFirstName(custRS.getString("fname"));
 			}
-			
+
 			// close to manage resources
 			custRS.close();
 

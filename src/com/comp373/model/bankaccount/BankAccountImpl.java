@@ -7,11 +7,11 @@ import com.comp373.model.human.Human;
 public class BankAccountImpl implements BankAccount {
 	private String accountNumber;
 	private double totalFunds;
-//	TODO DI
-	private static Random Randomgenerator = new Random(System.currentTimeMillis());
+	// TODO #DI #new Depends on Java.util.Random which is in JCL
+	private static Random randomGenerator = new Random(System.currentTimeMillis());
 
 	public BankAccountImpl() {
-		accountNumber = Integer.toString(Randomgenerator.nextInt(1000) + 9999);
+		accountNumber = Integer.toString(randomGenerator.nextInt(1000) + 9999);
 		totalFunds = 0.0;
 	}
 
@@ -25,14 +25,6 @@ public class BankAccountImpl implements BankAccount {
 
 	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
-	}
-
-	public static Random getRandomgenerator() {
-		return Randomgenerator;
-	}
-
-	public static void setRandomgenerator(Random randomgenerator) {
-		Randomgenerator = randomgenerator;
 	}
 
 	public void setTotalFunds(double fund) {
@@ -49,12 +41,13 @@ public class BankAccountImpl implements BankAccount {
 
 	public boolean transferFunds(double payment, Human userToPay) {
 		// totalFunds = totalFunds + increment;
-		// TODO : CALLING ON BANK ACCOUNT ON WHICH USER IS PAYING I AM GETTING THERE
+		// TODO : CALLING ON BANK ACCOUNT ON WHICH USER IS PAYING I AM GETTING
+		// THERE
 		// ACCOUNT BALCANCE TO SEE IF THEY HAVE ENOUGH MONEY
 		/*
-		 * IF THEY HAVE ENOUGH THEN YOU SET THEIR ACCOUNT BALANCE MINUS WHAT THEY RE
-		 * PAYING GET OTHER USERS THEIR BACK ACCOUNT BALANCE AND THEN ADD MONEY TO THAT
-		 * ACCOUNT
+		 * IF THEY HAVE ENOUGH THEN YOU SET THEIR ACCOUNT BALANCE MINUS WHAT
+		 * THEY RE PAYING GET OTHER USERS THEIR BACK ACCOUNT BALANCE AND THEN
+		 * ADD MONEY TO THAT ACCOUNT
 		 */
 		boolean enoughMoney = false;
 		if (payment > totalFunds) {
@@ -73,5 +66,9 @@ public class BankAccountImpl implements BankAccount {
 
 	public void approvePayment() {
 
+	}
+
+	public static void setRandomGenerator(Random randomGenerator) {
+		BankAccountImpl.randomGenerator = randomGenerator;
 	}
 }

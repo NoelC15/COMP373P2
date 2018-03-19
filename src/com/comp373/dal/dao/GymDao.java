@@ -27,9 +27,8 @@ public class GymDao {
 
 			ResultSet custRS = st.executeQuery(selectManagerQuery);
 			System.out.println("GymDAO: *************** Query " + selectManagerQuery);
-			// TODO DI for gym: done
+
 			// Get Gym
-			// Gym gym = new Gym();
 			while (custRS.next()) {
 				gym.setCapacity(custRS.getInt("capacity"));
 				gym.setGymName(custRS.getString("facilityName"));
@@ -84,6 +83,7 @@ public class GymDao {
 	public Gym getGym() {
 		return this.gym;
 	}
+
 	public void setGym(Gym gym) {
 		this.gym = gym;
 	}

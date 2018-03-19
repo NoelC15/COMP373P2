@@ -1,5 +1,6 @@
 package com.comp373.service;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -15,5 +16,5 @@ public interface FacilityUse {
 
 	public List<Date> listActualUsage();
 
-	public long calcUsageRate(Date openDate);
+	public long calcUsageRate(Calendar openDate);
 }
