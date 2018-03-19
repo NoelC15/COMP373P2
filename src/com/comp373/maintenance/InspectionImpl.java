@@ -10,7 +10,6 @@ import com.comp373.model.facility.Gym;
 public class InspectionImpl implements Inspection {
 	private Date timeOfInspection;
 	private String inspectionResult;
-	// TODO #DI #new
 	private Map<Gym, Inspection> allInspections;
 
 	public InspectionImpl() {
