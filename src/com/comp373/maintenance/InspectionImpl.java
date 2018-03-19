@@ -7,18 +7,17 @@ import java.util.Map;
 
 import com.comp373.model.facility.Gym;
 
-//	TODO create Inspection interface
 public class InspectionImpl implements Inspection {
 	private Date timeOfInspection;
 	private String inspectionResult;
-	// TODO DI
-	private Map<Gym, Inspection> allInspections = new HashMap<Gym, Inspection>();
+	// TODO #DI #new
+	private Map<Gym, Inspection> allInspections;
 
 	public InspectionImpl() {
 	}
 
 	public InspectionImpl(GregorianCalendar time, String result) {
-		this.timeOfInspection = new GregorianCalendar().getTime();
+		this.timeOfInspection = time.getTime();
 		this.inspectionResult = result;
 	}
 
