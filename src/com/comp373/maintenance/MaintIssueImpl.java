@@ -7,8 +7,10 @@ import com.comp373.model.facility.Gym;
 
 public class MaintIssueImpl implements MaintIssue {
 
-	private String[] damageTypes; // there can be multiple types of damage for each request
-	private String maintProblem; // each request has a singular 'maintenance problem' descriptor
+	private String[] damageTypes; // there can be multiple types of damage for
+									// each request
+	private String maintProblem; // each request has a singular 'maintenance
+									// problem' descriptor
 	private Date timeRequested;
 	private Gym facilityRequesting;
 

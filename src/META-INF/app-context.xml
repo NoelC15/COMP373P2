@@ -4,25 +4,53 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
 	<description>Wiring the dependencies for the Application.</description>
-
-
+	
+	<bean id="calendar" class="java.util.GregorianCalendar" scope="prototype">
+	</bean>
+	
+	<bean id="random" class="java.util.Random">
+	</bean>
+	
+	<bean id="applicationConstants" class="com.comp373.constants.ApplicationConstants">
+		<property name="damageEvaluationDays">
+			<map key-type="java.lang.String" value-type="java.lang.Integer"></map>
+		</property>
+		<property name="maintCost">
+			<map key-type="java.lang.String" value-type="java.lang.Double"></map>
+		</property>
+	</bean>
+	
 	<bean id="gym" class="com.comp373.model.facility.GymImpl" scope="prototype">
 	<property name="facilityProblems">
 		<list value-type="java.lang.String"></list>
 	</property>
-	<property name="currentMaintIssue" ref="maintIssue"></property>
-	<property name="facilityUses" ref="facilityUse"></property>
-	<property name="facilityMaint" ref="facilityMaintenance"></property>
+	<property name="currentMaintIssue" ref="maintIssue">
+	</property>
+	<property name="facilityUses" ref="facilityUse">
+	</property>
+	<property name="facilityMaint" ref="facilityMaintenance">
+	</property>
 	</bean>
 	
 	<bean id="facilityMaintenance" class="com.comp373.service.impl.FacilityMaintenanceImpl">
-	
+		<property name="maintDays">
+			<list value-type="java.util.Date" ></list>
+		</property>
+		<property name="date" ref="calendar">
+		</property> 
+		<property name="issue" ref="maintIssue">
+		</property>
+		<property name="inspections" ref="inspection">
+		</property>
 	</bean>
 	
 	<bean id="facilityUse" class="com.comp373.service.impl.FacilityUseImpl">
-	
+		<property name="usageDays">
+			<list value-type="java.util.Date" ></list>
+		</property>
+		<property name="date" ref="calendar">
+		</property>
 	</bean>
 
 	<bean id="inspection" class="com.comp373.maintenance.InspectionImpl"
@@ -34,12 +62,14 @@
 	</bean>
 
 	<bean id="maintIssue" class="com.comp373.maintenance.MaintIssueImpl">
-		<property name="facilityRequesting" ref="gym"></property>
+		<property name="facilityRequesting" ref="gym">
+		</property>
 	</bean>
 
 	<bean id="gymLeader" class="com.comp373.model.human.GymLeader"
-		scope="prototype">
-		<property name="gym" ref="gym"></property>
+		scope="prototype" parent="human">
+		<property name="gym" ref="gym">
+		</property>
 	</bean>
 
 	<bean id="gymDao" class="com.comp373.dal.dao.GymDao" scope="singleton">
@@ -47,16 +77,19 @@
 	</bean>
 
 	<bean id="managerDao" class="com.comp373.dal.dao.ManagerDao" scope="Singleton">
-		<property name="manager" ref="manager"></property>
+		<property name="manager" ref="manager">
+		</property>
 		<property name="bankAccount" ref="bankAccount"></property>
 	</bean>
 
 	<bean id="bankAccount" class="com.comp373.model.bankaccount.BankAccountImpl" scope="prototype">
+		<property name="randomGenerator" ref="random">
+		</property>
 	</bean>
 	
-	
 	<bean id="human" class="com.comp373.model.human.Human" scope="prototype">
-		<property name="account" ref="bankAccount" />
+		<property name="account" ref="bankAccount">
+		</property>
 	</bean>
 
 	<bean id="manager" class="com.comp373.model.human.Manager" parent="human"
@@ -72,13 +105,24 @@
 	<bean id="pokemon" class="com.comp373.model.pokemon.PokemonImpl"
 		scope="prototype">
 	</bean>
+	
 	<bean id="battleDome" class="com.comp373.model.building.BattleDomeImpl"
 		scope="prototype">
 		<property name="facilities">
-			<list value-type="gym"></list>
-
+			<list value-type="gym">
+			</list>
 		</property>
-
+	</bean>
+	
+	<bean id="battleDomeFacilitiesClient" class="com.comp373.view.BattleDomeFacilitiesClient" scope="singleton">
+		<property name="team">
+		<list value-type="pokemon">
+		</list>
+		 </property>
+		 <property name="gymPokemon">
+		 <list value-type="pokemon">
+		 </list>
+		 </property>
 	</bean>
 
 </beans>

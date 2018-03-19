@@ -2,7 +2,6 @@ package com.comp373.maintenance;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.Map;
 
 import com.comp373.model.facility.Gym;

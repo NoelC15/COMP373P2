@@ -7,7 +7,7 @@ import com.comp373.model.human.Human;
 public class BankAccountImpl implements BankAccount {
 	private String accountNumber;
 	private double totalFunds;
-	// TODO #DI #new
+	// TODO #DI #new Depends on Java.util.Random which is in JCL
 	private static Random randomGenerator = new Random(System.currentTimeMillis());
 
 	public BankAccountImpl() {
@@ -41,12 +41,13 @@ public class BankAccountImpl implements BankAccount {
 
 	public boolean transferFunds(double payment, Human userToPay) {
 		// totalFunds = totalFunds + increment;
-		// TODO : CALLING ON BANK ACCOUNT ON WHICH USER IS PAYING I AM GETTING THERE
+		// TODO : CALLING ON BANK ACCOUNT ON WHICH USER IS PAYING I AM GETTING
+		// THERE
 		// ACCOUNT BALCANCE TO SEE IF THEY HAVE ENOUGH MONEY
 		/*
-		 * IF THEY HAVE ENOUGH THEN YOU SET THEIR ACCOUNT BALANCE MINUS WHAT THEY RE
-		 * PAYING GET OTHER USERS THEIR BACK ACCOUNT BALANCE AND THEN ADD MONEY TO THAT
-		 * ACCOUNT
+		 * IF THEY HAVE ENOUGH THEN YOU SET THEIR ACCOUNT BALANCE MINUS WHAT
+		 * THEY RE PAYING GET OTHER USERS THEIR BACK ACCOUNT BALANCE AND THEN
+		 * ADD MONEY TO THAT ACCOUNT
 		 */
 		boolean enoughMoney = false;
 		if (payment > totalFunds) {
@@ -65,10 +66,6 @@ public class BankAccountImpl implements BankAccount {
 
 	public void approvePayment() {
 
-	}
-
-	public static Random getRandomGenerator() {
-		return randomGenerator;
 	}
 
 	public static void setRandomGenerator(Random randomGenerator) {

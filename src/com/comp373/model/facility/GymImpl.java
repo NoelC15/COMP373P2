@@ -25,7 +25,6 @@ public class GymImpl implements Gym {
 	// interfaces
 	// trying to do this using DIP slides as reference
 	// probably will end up refactoring when switching to Spring
-	// TODO #DI #new
 	private FacilityUse facilityUses;
 	private FacilityMaintenance facilityMaint;
 

@@ -1,6 +1,5 @@
 package com.comp373.view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -17,17 +16,24 @@ import com.comp373.model.pokemon.Pokemon;
 
 public class BattleDomeFacilitiesClient {
 
-	/**
-	 * @param args
-	 * @throws Exception
-	 */
+	private static List<Pokemon> team;
+	private static List<Pokemon> gymPokemon;
+
+	public static void setGymPokemon(List<Pokemon> gymPokemon) {
+		BattleDomeFacilitiesClient.gymPokemon = gymPokemon;
+	}
+
+	public static void setTeam(List<Pokemon> team) {
+		BattleDomeFacilitiesClient.team = team;
+	}
+
 	public static void main(String args[]) throws Exception {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/app-context.xml");
 		System.out.println("***************** Application Context instantiated! ******************");
 
-		
-		// TODO should be fixed; method defined in human are not visible in manager
+		// TODO should be fixed; method defined in human are not visible in
+		// manager
 		Human manager = (Manager) context.getBean("manager");
 		manager.setFirstName("John");
 		manager.setLastName("Smith");
@@ -37,23 +43,24 @@ public class BattleDomeFacilitiesClient {
 		System.out.println("\tManager ID: \t\t" + manager.getHumanId() + "\n");
 
 		// Make manager bank account
-		// BankAccount mangBankAccount = new BankAccountImpl();
-		BankAccount mangBankAccount = (BankAccount) context.getBean("bankAccount");
+		BankAccount mangBankAccount = manager.getAccount();
+		
 		mangBankAccount.setTotalFunds(1500.67);
 		manager.setAccount(mangBankAccount);
 		System.out.println("\tManager's Bank Account funds:\t" + manager.getAccount().getTotalFunds() + "\n");
 		System.out.println("\t" + manager.getFirstName() + "'s Bank Account number (random generation):\t"
 				+ manager.getAccount().getAccountNumber() + "\n");
-		// TODO DI
+
 		// Create a BattleDome
 		BattleDome redVersion = (BattleDome) context.getBean("battleDome");
 		redVersion.setBuildingId("BattleDome01");
+		
 		// Assign it to the manager
 		// TODO can this line be written without casting
 		((Manager) manager).setBattleDome(redVersion);
 
-		// TODO DI
-		// TODO should be fixed; method defined in human are not visible in trainer
+		// TODO should be fixed; method defined in human are not visible in
+		// trainer
 		// Create a trainer
 		Human trainer = (Trainer) context.getBean("trainer");
 		trainer.setFirstName("Ash");
@@ -65,16 +72,15 @@ public class BattleDomeFacilitiesClient {
 		System.out.println("\tTrainer: \t\t" + trainer.getFirstName() + " " + trainer.getLastName() + "\n");
 		System.out.println("\tTrainer ID: \t\t" + trainer.getHumanId() + "\n");
 		System.out.println("\t" + trainer.getFirstName() + " has " + ((Trainer) trainer).getNumOfBadges() + " badges");
-		// TODO DI
+
 		// Make trainer bank account
-		BankAccount trainerAccount = (BankAccount) context.getBean("bankAccount");
+		BankAccount trainerAccount = trainer.getAccount();
 		trainerAccount.setTotalFunds(600.45);
 		trainer.setAccount(trainerAccount);
 		System.out.println("\tTrainers's Bank Account funds:\t" + trainer.getAccount().getTotalFunds() + "\n");
 		System.out.println("\t" + trainer.getFirstName() + "'s Bank Account number (random generation):\t"
 				+ trainer.getAccount().getAccountNumber() + "\n");
 
-		// TODO DI
 		// Make Pokemon for Ash
 		// how to use getBean with object created with constructor parameters
 		Pokemon pikachu = (Pokemon) context.getBean("pokemon");
@@ -89,8 +95,7 @@ public class BattleDomeFacilitiesClient {
 		charmander.setType("fire");
 		charmander.setLevel(8);
 		charmander.setName("Charmander");
-		// TODO #DI #new
-		List<Pokemon> team = new ArrayList<Pokemon>();
+
 		team.add(pikachu);
 		team.add(squirtle);
 		team.add(charmander);
@@ -103,7 +108,7 @@ public class BattleDomeFacilitiesClient {
 			// TODO can this line be written without casting
 			System.out.println("\t\t" + ((Trainer) trainer).getPokemon().get(i).getName());
 		}
-		// TODO DI
+
 		// Create a gym leader
 		GymLeader leader = (GymLeader) context.getBean("gymLeader");
 		leader.setFirstName("Brock");
@@ -111,16 +116,17 @@ public class BattleDomeFacilitiesClient {
 		leader.setHumanId(3456789);
 		System.out.println("\tGym Leader: \t" + leader.getFirstName() + " " + leader.getLastName() + "\n");
 		System.out.println("\tLeader ID: \t" + leader.getHumanId() + "\n");
-		// TODO DI
+
 		// Make BankAccount for gym leader
-		BankAccount gymAccount = (BankAccount) context.getBean("bankAccount");
+		BankAccount gymAccount = leader.getAccount(); 
+
 		gymAccount.setTotalFunds(897.06);
 		leader.setAccount(gymAccount);
 		System.out.println(
 				"\t" + leader.getFirstName() + "'s Bank Account funds:\t" + leader.getAccount().getTotalFunds() + "\n");
 		System.out.println("\t" + leader.getFirstName() + "'s Bank Account number (random generation):\t"
 				+ leader.getAccount().getAccountNumber() + "\n");
-		// TODO DI
+
 		// Make Pokemon for Brock
 		Pokemon geodude = (Pokemon) context.getBean("pokemon");
 		geodude.setType("ground");
@@ -136,8 +142,7 @@ public class BattleDomeFacilitiesClient {
 		zubat.setType("poison");
 		zubat.setLevel(8);
 		zubat.setName("Zubat");
-		// TODO DI
-		List<Pokemon> gymPokemon = new ArrayList<Pokemon>();
+
 		gymPokemon.add(geodude);
 		gymPokemon.add(onyx);
 		gymPokemon.add(zubat);
@@ -151,7 +156,6 @@ public class BattleDomeFacilitiesClient {
 		}
 
 		// Make a gym
-		// Gym pewterCity = new Gym();
 		Gym pewterCity = (Gym) context.getBean("gym");
 		// TODO can this line be written without casting
 		((Manager) manager).getBattleDome().addNewFacility(pewterCity); // add gym to battledome
@@ -202,7 +206,8 @@ public class BattleDomeFacilitiesClient {
 				+ pewterCity.getGymMaint().calcMaintenanceCostForFacility(pewterCity.listMaintenance()));
 		System.out.println("\t" + pewterCity.getGymName() + "'s total downtime due to the last battle was "
 				+ pewterCity.getGymMaint().calcDownTimeForFacilitiy(pewterCity.listMaintenance()) + " days.");
-		// Let's pretend we were having a great day and the maintenance was already
+		// Let's pretend we were having a great day and the maintenance was
+		// already
 		// done even though I requested it for 2 days from now....
 		pewterCity.listMaintenance().resolveMaintIssue(pewterCity);
 		System.out.println("\tMaintenance has been done, " + pewterCity.getGymName() + " is currently "

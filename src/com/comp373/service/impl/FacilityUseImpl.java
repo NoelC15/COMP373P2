@@ -1,6 +1,6 @@
 package com.comp373.service.impl;
 
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -9,36 +9,39 @@ import com.comp373.model.facility.Gym;
 import com.comp373.service.FacilityUse;
 
 public class FacilityUseImpl implements FacilityUse {
-	private List<Date> usageDays = new ArrayList<Date>();
+	private List<Date> usageDays;
+	private Calendar date;
 
-	@Override
+	public void setDate(Calendar date) {
+		this.date = date;
+	}
+
+	public void setUsageDays(List<Date> usageDays) {
+		this.usageDays = usageDays;
+	}
+
 	public void isInUseDuringInterval(Date dayOfUse) {
 		// track days when facility is used
 		usageDays.add(dayOfUse);
 	}
 
-	@Override
 	public void assignFacilityToUse(Gym gym, String use) {
 		gym.setGymState(use); // this would be using the relevant application constant
-		this.isInUseDuringInterval(new Date()); // store date
+		this.isInUseDuringInterval(date.getTime()); // store date
 	}
 
-	@Override
 	public void vacateFacility(Gym gym) {
 		gym.setGymState(ApplicationConstants.VACANT);
 	}
 
-	@Override
 	public List<Date> listActualUsage() {
 		return this.usageDays;
 	}
 
-	@Override
-	public long calcUsageRate(Date openDate) {
+	public long calcUsageRate(Calendar openDate) {
 		// Usage rate = days scheduled/days since open
 		int numberOfDaysUsed = this.usageDays.size(); // how many days has facility been used
-		Date today = new Date();
-		long difference = today.getTime() - openDate.getTime(); // how many days facility has been open
+		long difference = date.getTimeInMillis() - openDate.getTimeInMillis(); // how many days facility has been open
 		long usage = numberOfDaysUsed / difference;
 		return usage;
 	}
