@@ -6,10 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 import com.comp373.maintenance.MaintIssue;
-import com.comp373.maintenance.MaintIssueImpl;
 import com.comp373.service.FacilityMaintenance;
 import com.comp373.service.FacilityUse;
-import com.comp373.service.impl.FacilityMaintenanceImpl;
 
 public class GymImpl implements Gym {
 	private double priceToBattle;
@@ -52,6 +50,7 @@ public class GymImpl implements Gym {
 	}
 
 	public void setOpenDate(int year, int month, int day) throws ParseException {
+		//TODO new DI
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		this.openDate = dateFormat
 				.parse(Integer.toString(year) + "/" + Integer.toString(month) + "/" + Integer.toString(day));
@@ -93,7 +92,7 @@ public class GymImpl implements Gym {
 		return currentMaintIssue;
 	}
 
-	public void setCurrentMaintIssue(MaintIssueImpl currentMaintIssue) {
+	public void setCurrentMaintIssue(MaintIssue currentMaintIssue) {
 		this.currentMaintIssue = currentMaintIssue;
 	}
 

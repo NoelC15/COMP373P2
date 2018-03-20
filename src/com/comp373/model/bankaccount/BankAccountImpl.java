@@ -1,17 +1,13 @@
 package com.comp373.model.bankaccount;
 
-import java.util.Random;
-
 import com.comp373.model.human.Human;
 
 public class BankAccountImpl implements BankAccount {
 	private String accountNumber;
 	private double totalFunds;
-	// TODO #DI #new Depends on Java.util.Random which is in JCL
-	private static Random randomGenerator = new Random(System.currentTimeMillis());
 
 	public BankAccountImpl() {
-		accountNumber = Integer.toString(randomGenerator.nextInt(1000) + 9999);
+		accountNumber = Integer.toString((int) (Math.random() * System.currentTimeMillis()));
 		totalFunds = 0.0;
 	}
 
@@ -45,9 +41,9 @@ public class BankAccountImpl implements BankAccount {
 		// THERE
 		// ACCOUNT BALCANCE TO SEE IF THEY HAVE ENOUGH MONEY
 		/*
-		 * IF THEY HAVE ENOUGH THEN YOU SET THEIR ACCOUNT BALANCE MINUS WHAT
-		 * THEY RE PAYING GET OTHER USERS THEIR BACK ACCOUNT BALANCE AND THEN
-		 * ADD MONEY TO THAT ACCOUNT
+		 * IF THEY HAVE ENOUGH THEN YOU SET THEIR ACCOUNT BALANCE MINUS WHAT THEY RE
+		 * PAYING GET OTHER USERS THEIR BACK ACCOUNT BALANCE AND THEN ADD MONEY TO THAT
+		 * ACCOUNT
 		 */
 		boolean enoughMoney = false;
 		if (payment > totalFunds) {
@@ -68,7 +64,4 @@ public class BankAccountImpl implements BankAccount {
 
 	}
 
-	public static void setRandomGenerator(Random randomGenerator) {
-		BankAccountImpl.randomGenerator = randomGenerator;
-	}
 }

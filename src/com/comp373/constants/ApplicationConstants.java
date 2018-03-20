@@ -35,4 +35,12 @@ public class ApplicationConstants {
 	public static void setMaintCost(Map<String, Double> maintCost) {
 		ApplicationConstants.maintCost = maintCost;
 	}
+
+	public static Map<String, Integer> getDamageEvaluationDays() {
+		return damageEvaluationDays;
+	}
+
+	public static Map<String, Double> getMaintCost() {
+		return maintCost;
+	}
 }

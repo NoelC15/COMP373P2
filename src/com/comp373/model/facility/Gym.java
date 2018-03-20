@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.comp373.maintenance.MaintIssue;
-import com.comp373.maintenance.MaintIssueImpl;
 import com.comp373.service.FacilityMaintenance;
 import com.comp373.service.FacilityUse;
 
@@ -47,7 +46,7 @@ public interface Gym {
 	// listMaintenance
 	public MaintIssue listMaintenance();
 
-	public void setCurrentMaintIssue(MaintIssueImpl currentMaintIssue);
+	public void setCurrentMaintIssue(MaintIssue currentMaintIssue);
 
 	// getFacilityState
 	public String getGymState();

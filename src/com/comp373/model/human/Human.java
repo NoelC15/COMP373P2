@@ -2,53 +2,22 @@ package com.comp373.model.human;
 
 import com.comp373.model.bankaccount.BankAccount;
 
-public class Human {
-	private String firstName;
-	private String lastName;
-	private BankAccount account;
-	private long humanId;
+public interface Human {
 
-	public Human() {
+	public long getHumanId();
 
-	}
+	public void setHumanId(long humanId);
 
-	public Human(String fName, String lName, BankAccount account, long id) {
-		this.firstName = fName;
-		this.lastName = lName;
-		this.account = account;
-		this.humanId = id;
-	}
+	public void setFirstName(String firstName);
 
-	public long getHumanId() {
-		return humanId;
-	}
+	public String getFirstName();
 
-	public void setHumanId(long humanId) {
-		this.humanId = humanId;
-	}
+	public void setLastName(String lastName);
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+	public String getLastName();
 
-	public String getFirstName() {
-		return firstName;
-	}
+	public void setAccount(BankAccount account);
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setAccount(BankAccount account) {
-		this.account = account;
-	}
-
-	public BankAccount getAccount() {
-		return this.account;
-	}
+	public BankAccount getAccount();
 
 }

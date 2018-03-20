@@ -8,17 +8,17 @@ import java.sql.Statement;
 
 import com.comp373.dal.DBHelper;
 import com.comp373.model.bankaccount.BankAccount;
-import com.comp373.model.human.Manager;
+import com.comp373.model.human.ManagerImpl;
 
 public class ManagerDao {
 
-	Manager manager;
+	ManagerImpl manager;
 	BankAccount bankAccount;
 
 	public ManagerDao() {
 	}
 
-	public Manager getManager(Long humanId) {
+	public ManagerImpl getManager(Long humanId) {
 
 		try {
 			// Get Manager
@@ -61,7 +61,7 @@ public class ManagerDao {
 		return null;
 	}
 
-	public void addManager(Manager cust) {
+	public void addManager(ManagerImpl cust) {
 		Connection con = DBHelper.getConnection();
 		PreparedStatement custPst = null;
 		PreparedStatement addPst = null;
@@ -101,11 +101,11 @@ public class ManagerDao {
 		}
 	}
 
-	public Manager getManager() {
+	public ManagerImpl getManager() {
 		return manager;
 	}
 
-	public void setManager(Manager manager) {
+	public void setManager(ManagerImpl manager) {
 		this.manager = manager;
 	}
 

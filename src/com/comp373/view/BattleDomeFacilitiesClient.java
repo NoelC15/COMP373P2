@@ -8,10 +8,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.comp373.model.bankaccount.BankAccount;
 import com.comp373.model.building.BattleDome;
 import com.comp373.model.facility.Gym;
-import com.comp373.model.human.GymLeader;
+import com.comp373.model.human.GymLeaderImpl;
 import com.comp373.model.human.Human;
-import com.comp373.model.human.Manager;
-import com.comp373.model.human.Trainer;
+import com.comp373.model.human.ManagerImpl;
+import com.comp373.model.human.TrainerImpl;
 import com.comp373.model.pokemon.Pokemon;
 
 public class BattleDomeFacilitiesClient {
@@ -34,7 +34,7 @@ public class BattleDomeFacilitiesClient {
 
 		// TODO should be fixed; method defined in human are not visible in
 		// manager
-		Human manager = (Manager) context.getBean("manager");
+		Human manager = (ManagerImpl) context.getBean("manager");
 		manager.setFirstName("John");
 		manager.setLastName("Smith");
 		manager.setHumanId(456789054);
@@ -57,21 +57,21 @@ public class BattleDomeFacilitiesClient {
 		
 		// Assign it to the manager
 		// TODO can this line be written without casting
-		((Manager) manager).setBattleDome(redVersion);
+		((ManagerImpl) manager).setBattleDome(redVersion);
 
 		// TODO should be fixed; method defined in human are not visible in
 		// trainer
 		// Create a trainer
-		Human trainer = (Trainer) context.getBean("trainer");
+		Human trainer = (TrainerImpl) context.getBean("trainer");
 		trainer.setFirstName("Ash");
 		trainer.setLastName("Ketchum");
 		trainer.setHumanId(12345678);
 		// TODO can this line be written without casting
-		((Trainer) trainer).setNumOfBadges(2);
+		((TrainerImpl) trainer).setNumOfBadges(2);
 
 		System.out.println("\tTrainer: \t\t" + trainer.getFirstName() + " " + trainer.getLastName() + "\n");
 		System.out.println("\tTrainer ID: \t\t" + trainer.getHumanId() + "\n");
-		System.out.println("\t" + trainer.getFirstName() + " has " + ((Trainer) trainer).getNumOfBadges() + " badges");
+		System.out.println("\t" + trainer.getFirstName() + " has " + ((TrainerImpl) trainer).getNumOfBadges() + " badges");
 
 		// Make trainer bank account
 		BankAccount trainerAccount = trainer.getAccount();
@@ -100,17 +100,17 @@ public class BattleDomeFacilitiesClient {
 		team.add(squirtle);
 		team.add(charmander);
 
-		((Trainer) trainer).setPokemon(team);
+		((TrainerImpl) trainer).setPokemon(team);
 
 		System.out.println("\t" + trainer.getFirstName() + "'s Pokemon:");
 		int numOfPokemon = team.size();
 		for (int i = 0; i < numOfPokemon; i++) {
 			// TODO can this line be written without casting
-			System.out.println("\t\t" + ((Trainer) trainer).getPokemon().get(i).getName());
+			System.out.println("\t\t" + ((TrainerImpl) trainer).getPokemon().get(i).getName());
 		}
 
 		// Create a gym leader
-		GymLeader leader = (GymLeader) context.getBean("gymLeader");
+		GymLeaderImpl leader = (GymLeaderImpl) context.getBean("gymLeader");
 		leader.setFirstName("Brock");
 		leader.setLastName("The Rock");
 		leader.setHumanId(3456789);
@@ -158,7 +158,7 @@ public class BattleDomeFacilitiesClient {
 		// Make a gym
 		Gym pewterCity = (Gym) context.getBean("gym");
 		// TODO can this line be written without casting
-		((Manager) manager).getBattleDome().addNewFacility(pewterCity); // add gym to battledome
+		((ManagerImpl) manager).getBattleDome().addNewFacility(pewterCity); // add gym to battledome
 		leader.setGym(pewterCity); // assign gym to leader
 		pewterCity.setCapacity(400);
 		pewterCity.setOpenDate(1997, 1, 1);
@@ -172,7 +172,7 @@ public class BattleDomeFacilitiesClient {
 
 		// Schedule a battle
 		// TODO can this line be written without casting
-		((Trainer) trainer).scheduleBattle(leader); // schedule battle with gym leader
+		((TrainerImpl) trainer).scheduleBattle(leader); // schedule battle with gym leader
 		System.out.println("\tIs " + pewterCity.getGymName() + " in use now?: " + pewterCity.getGymState());
 		System.out.println("\tGym leader " + leader.getFirstName() + " is paid a fee of $"
 				+ leader.getGym().getPriceToBattle() + " by " + trainer.getFirstName() + " to battle." + "\n");
@@ -183,7 +183,7 @@ public class BattleDomeFacilitiesClient {
 
 		// Brock lost.
 		// TODO can this line be written without casting
-		leader.lostBattle((Trainer) trainer);
+		leader.lostBattle((TrainerImpl) trainer);
 		System.out.println("\t" + leader.getFirstName() + " lost the battle and therefore paid out $"
 				+ (leader.getGym().getPriceToBattle() * 2) + " to " + trainer.getFirstName() + "\n");
 		System.out.println(
@@ -212,5 +212,13 @@ public class BattleDomeFacilitiesClient {
 		pewterCity.listMaintenance().resolveMaintIssue(pewterCity);
 		System.out.println("\tMaintenance has been done, " + pewterCity.getGymName() + " is currently "
 				+ pewterCity.getGymState());
+	}
+
+	public static List<Pokemon> getTeam() {
+		return team;
+	}
+
+	public static List<Pokemon> getGymPokemon() {
+		return gymPokemon;
 	}
 }
